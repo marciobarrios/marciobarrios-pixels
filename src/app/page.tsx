@@ -117,7 +117,7 @@ export default function Home() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Favicon icon="xing.ico" />
+                <Favicon icon="xing.svg" />
                 <span className="work-name">Xing</span>
                 <span className="work-years">2013 — 2019</span>
                 <ArrowUpRight size={13} aria-hidden="true" />
