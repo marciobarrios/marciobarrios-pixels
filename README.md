@@ -1,41 +1,44 @@
-# Marcio Barrios — I move pixels.
+# Marcio Barrios
 
-A personal portfolio for a Design Engineer in Barcelona. One statically rendered page, with the work and the small details doing the talking.
+I'm a design engineer based in Barcelona. This is my portfolio: a single page with selected projects, work history, and a few playful interactions.
 
 ## Run locally
 
-Use Node **24** (`fnm use` reads `.node-version`) and pnpm **11.1.2**.
+You'll need Node **24** and pnpm **11.1.2**. If you use fnm, run `fnm use` to pick up the version in `.node-version`.
 
 ```sh
 pnpm install
 pnpm dev
 ```
 
-Open http://localhost:3000. No environment variables or database are required.
+Open [localhost:3000](http://localhost:3000). No environment variables or database setup needed.
 
 ## Stack
 
-- Next.js 16.3.4, App Router; React 19.2.8; TypeScript 7.0.2
-- Tailwind CSS 4, `class-variance-authority`, `clsx`, `tailwind-merge`
-- shadcn/ui `base-nova` components using `@base-ui/react` primitives
-- Self-hosted Geist Mono through `next/font`
-- Oxlint, Oxfmt, Playwright, and axe
-- Node 24 and pnpm
+- Next.js App Router, React, and TypeScript
+- Tailwind CSS 4 for styling
+- shadcn/ui components built on Base UI
+- Geist Mono, served locally through `next/font`
+- Oxlint and Oxfmt for linting and formatting
+- Playwright and axe for browser and accessibility checks
 
 ## Edit the page
 
 - `src/app/page.tsx`: introduction, social links, career history, and footer.
-- `src/lib/content.ts`: the seven projects and three MITO clips, including their copy and destinations.
-- `src/app/globals.css`: color tokens, layout, typography, texture, motion, and responsive styles.
-- `public/media`: original portrait plus web-optimized copies of the supplied MITO recordings and still posters.
-- `public/icons`: locally served favicons. Some projects use their existing default favicon.
+- `src/lib/content.ts`: project descriptions, links, and MITO video clips.
+- `src/app/globals.css`: colors, layout, typography, animations, and responsive styles.
+- `public/media`: portrait, MITO recordings, and video posters.
+- `public/icons`: project favicons.
 - `src/app/opengraph-image.tsx`: social sharing image, generated at build time.
 
-The portrait uses a small WebGL pixelation shader. Hover resolves the image; click/tap pins the clear portrait, and a second click restores the pixels. If WebGL is unavailable or its context is lost, the ordinary portrait stays visible. Rendering only runs during interactions.
+## Interactions
 
-The MITO work entry starts expanded. The three previews play only while visible and the page is active, with a shared pause button. Each opens a Base UI dialog with native video controls. Reduced-motion visitors start with static posters and can explicitly opt into playback. These are silent screen recordings, with text descriptions in each viewer.
+- Hover over the portrait to reveal it. Click or tap to keep it clear, then click again to bring back the pixels. If WebGL isn't available, the regular portrait is shown.
+- The MITO section starts open. Its three silent video previews play while visible, with one button to pause them all. Open a preview to watch it with video controls and a text description.
+- Toggle the checkbox near the footer to scatter and rebuild a pixel cursor.
+- Light and dark mode follow your system settings until you choose a theme. Your choice is saved in the browser.
 
-The checkbox near the footer scatters a pixel cursor and restores it on the next toggle. Light/dark mode follows the system until changed, then stores the preference locally. Entrance motion, hover effects, and the pixel toy respect reduced motion.
+Animations respect your reduced motion setting. Video previews start as still posters when reduced motion is enabled, and you can choose to play them.
 
 ## Quality checks
 
@@ -48,7 +51,7 @@ pnpm exec playwright install chromium webkit
 pnpm test:e2e
 ```
 
-Playwright runs the production build on port 3101 in desktop Chromium and iPhone WebKit. Checks cover content and media, persisted themes, WCAG AA automated scans, video playback and focus restoration, keyboard operation, reduced motion, portrait fallback, and 320px layout.
+Playwright runs the production build on port 3101 in desktop Chromium and iPhone WebKit. The tests check content, media playback, saved themes, keyboard navigation, accessibility, reduced motion, and small screen layouts.
 
 To run against a deployment:
 
@@ -58,10 +61,6 @@ PLAYWRIGHT_BASE_URL=https://marciobarrios-pixels.vercel.app pnpm test:e2e
 
 ## Vercel
 
-The app is configured for Vercel with Node 24, a frozen pnpm lockfile, and a standard `next build`. The portfolio has its own project name, `marciobarrios-pixels`.
+The Vercel project is `marciobarrios-pixels`. It uses Node 24, installs dependencies from the pnpm lockfile, and builds with `next build`.
 
 When connecting a custom domain, update `metadataBase` in `src/app/layout.tsx`, the URL in `src/app/sitemap.ts`, and the sitemap URL in `src/app/robots.ts`. The existing `marciobarrios.com` site is separate from this project.
-
-## Content provenance
-
-The brief supplies the MITO role, career dates, and project list. Social handles and the portrait came from the existing marciobarrios.com portfolio. Project descriptions were checked against their public sites. The new visual design takes cues from the supplied portfolio references, with original copy and interactions. The three recordings are optimized copies; the originals in Downloads are untouched.
