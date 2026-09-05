@@ -136,9 +136,6 @@ export function PixelPortrait() {
     >
       <Image src="/media/marcio.jpg" alt="Marcio Barrios" width={96} height={96} priority />
       <canvas ref={canvasRef} width={288} height={288} aria-hidden="true" />
-      <span className="portrait-corner" aria-hidden="true">
-        +
-      </span>
     </button>
   );
 }
