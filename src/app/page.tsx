@@ -84,10 +84,7 @@ export default function Home() {
               <summary className="work-row">
                 <Favicon icon="mito.svg" />
                 <div className="work-name">
-                  <span>
-                    MITO AI
-                    <span className="current-dot" aria-label="Current position" />
-                  </span>
+                  <span>MITO AI</span>
                   <span className="work-role">Product Engineer</span>
                 </div>
                 <span className="work-years">2026 — now</span>

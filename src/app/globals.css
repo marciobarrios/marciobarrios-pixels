@@ -346,13 +346,6 @@ summary.work-row::-webkit-details-marker {
   font-weight: 400;
   white-space: nowrap;
 }
-.current-dot {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--primary);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary) 10%, transparent);
-}
 .work-chevron {
   color: var(--muted-foreground);
   transform: rotate(-90deg);
