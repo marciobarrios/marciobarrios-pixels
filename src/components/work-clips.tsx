@@ -117,7 +117,10 @@ export function WorkClips() {
   return (
     <section className="craft-section" aria-labelledby="craft-title">
       <div className="section-header">
-        <h2 id="craft-title">A few things in motion</h2>
+        <div className="craft-heading">
+          <h2 id="craft-title">A few things in motion</h2>
+          <p className="craft-note">Small details from the MITO canvas. Click for a closer look.</p>
+        </div>
         <button
           className="motion-toggle"
           onClick={() => setPreference(!moving)}
@@ -133,7 +136,6 @@ export function WorkClips() {
           <Clip key={clip.id} clip={clip} moving={moving} />
         ))}
       </div>
-      <p className="craft-note">Small details from the MITO canvas. Click for a closer look.</p>
     </section>
   );
 }

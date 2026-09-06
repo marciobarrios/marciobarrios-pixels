@@ -516,7 +516,7 @@ summary.work-row::-webkit-details-marker {
   color: var(--muted-foreground);
 }
 .craft-note {
-  margin-top: 17px;
+  margin-top: 3px;
   font-size: 10px;
   color: var(--muted-foreground);
 }
