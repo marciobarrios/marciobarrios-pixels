@@ -196,6 +196,299 @@
 .portrait canvas[data-ready="true"] {
   opacity: 1;
 }
+.secret-hint-positioner {
+  z-index: 50;
+}
+.secret-hint {
+  width: min(332px, calc(100vw - 32px));
+  max-height: var(--available-height);
+  overflow-y: auto;
+  padding: 19px;
+  border: 1px solid var(--border);
+  border-radius: 13px;
+  background: var(--popover);
+  color: var(--popover-foreground);
+  box-shadow:
+    0 8px 12px -8px #17201518,
+    0 20px 50px -18px #17201530;
+  transform-origin: var(--transform-origin);
+  transition:
+    opacity 180ms ease,
+    transform 220ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.secret-hint[data-starting-style],
+.secret-hint[data-ending-style] {
+  opacity: 0;
+  transform: translateY(-5px) scale(0.97);
+}
+.secret-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--primary);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+}
+.secret-hint-title {
+  margin-top: 13px;
+  font-size: 12px;
+  font-weight: 550;
+  letter-spacing: -0.3px;
+}
+.secret-hint-copy {
+  margin-top: 7px;
+  color: var(--secondary);
+  font-size: 11px;
+  line-height: 1.8;
+}
+.secret-code {
+  display: grid;
+  grid-template-columns: repeat(10, minmax(0, 1fr));
+  gap: 4px;
+  margin-top: 17px;
+}
+.secret-code kbd {
+  display: grid;
+  height: 28px;
+  place-items: center;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--muted);
+  box-shadow: 0 2px 0 var(--border);
+  font: inherit;
+  font-size: 12px;
+  transition:
+    background 120ms ease,
+    color 120ms ease,
+    transform 120ms ease;
+}
+.secret-code kbd[data-entered="true"] {
+  border-color: var(--primary);
+  background: var(--primary);
+  color: var(--primary-foreground);
+  box-shadow: none;
+  transform: translateY(2px);
+}
+.secret-keyboard-note,
+.secret-touch-controls > p {
+  margin-top: 13px;
+  color: var(--muted-foreground);
+  font-size: 9px;
+  line-height: 1.7;
+}
+.secret-touch-controls {
+  display: none;
+}
+.secret-gamepad {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) 8px repeat(2, minmax(0, 1fr));
+  gap: 6px;
+  margin-top: 12px;
+}
+.secret-gamepad-key {
+  min-width: 0;
+  height: 44px;
+  padding: 0;
+  font-size: 15px;
+  touch-action: manipulation;
+}
+.secret-gamepad-key[data-key="ArrowUp"] {
+  grid-column: 2;
+}
+.secret-gamepad-key[data-key="ArrowLeft"] {
+  grid-column: 1;
+  grid-row: 2;
+}
+.secret-gamepad-key[data-key="ArrowDown"] {
+  grid-column: 2;
+  grid-row: 2;
+}
+.secret-gamepad-key[data-key="ArrowRight"] {
+  grid-column: 3;
+  grid-row: 2;
+}
+.secret-gamepad-key[data-key="b"],
+.secret-gamepad-key[data-key="a"] {
+  align-self: center;
+  grid-column: 5;
+  grid-row: 1 / 3;
+  border-radius: 50%;
+  color: var(--primary);
+  background: var(--accent);
+}
+.secret-gamepad-key[data-key="a"] {
+  grid-column: 6;
+  transform: translateY(-8px);
+}
+.secret-dialog {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 560px;
+  max-width: calc(100% - 32px);
+  max-height: min(820px, calc(100dvh - 64px));
+  overflow: hidden;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  box-shadow: 0 24px 80px -24px #111b1560;
+}
+.secret-dialog[data-open] {
+  animation: secret-unlock 420ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.secret-dialog[data-closed] {
+  animation: secret-lock 180ms ease-in both;
+}
+.secret-dialog-header {
+  flex-shrink: 0;
+  padding: 30px 30px 23px;
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(135deg, var(--accent), transparent 80%);
+}
+.secret-dialog-title {
+  margin-top: 18px;
+  font-size: 25px;
+  font-weight: 550;
+  letter-spacing: -1.1px;
+  line-height: 1.3;
+  outline: none;
+}
+.secret-dialog-description {
+  margin-top: 9px;
+  font-size: 11px;
+  line-height: 1.8;
+}
+.secret-details {
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 8px 30px;
+  list-style: none;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+.secret-details li {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  padding: 15px 0;
+}
+.secret-details li + li {
+  border-top: 1px solid var(--border);
+}
+.secret-detail-icon {
+  display: grid;
+  flex: 0 0 33px;
+  height: 33px;
+  place-items: center;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--muted);
+  color: var(--primary);
+}
+.secret-details h3 {
+  margin-bottom: 5px;
+  color: var(--foreground);
+  font-size: 11px;
+  font-weight: 550;
+}
+.secret-details p {
+  color: var(--secondary);
+  font-size: 12px;
+  line-height: 1.85;
+}
+.secret-details a {
+  color: var(--foreground);
+  text-decoration: underline;
+  text-decoration-color: var(--input);
+  text-underline-offset: 3px;
+  transition: text-decoration-color 150ms ease;
+}
+.secret-details a:hover {
+  text-decoration-color: var(--primary);
+}
+.secret-dialog-footer {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 30px;
+  border-top: 1px solid var(--border);
+  background: var(--muted);
+}
+.secret-dialog-footer > span {
+  color: var(--muted-foreground);
+  font-size: 9px;
+}
+.secret-dialog-footer button {
+  min-height: 40px;
+  padding-inline: 12px;
+  font-size: 10px;
+}
+.secret-dialog > [data-slot="dialog-close"] {
+  top: 10px;
+  right: 10px;
+  width: 44px;
+  height: 44px;
+}
+@keyframes secret-unlock {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.94);
+    filter: blur(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+@keyframes secret-lock {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(8px) scale(0.97);
+  }
+}
+@media (any-pointer: coarse), (hover: none) {
+  .secret-touch-controls {
+    display: block;
+  }
+  .secret-keyboard-note {
+    display: none;
+  }
+}
+@media (max-width: 600px) {
+  .secret-dialog {
+    max-height: calc(100dvh - 32px);
+    border-radius: 14px;
+  }
+  .secret-dialog-header {
+    padding: 25px 22px 19px;
+  }
+  .secret-dialog-title {
+    font-size: 23px;
+  }
+  .secret-details {
+    padding: 5px 22px;
+  }
+  .secret-details li {
+    gap: 12px;
+  }
+  .secret-details p {
+    font-size: 11px;
+  }
+  .secret-dialog-footer {
+    padding: 13px 22px;
+    flex-wrap: wrap;
+  }
+}
 h1 {
   font-size: 24px;
   letter-spacing: -1.15px;

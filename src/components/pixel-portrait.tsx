@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import { PortraitSecret } from "@/components/portrait-secret";
 
 const vertex = `attribute vec2 a_position; varying vec2 v_uv; void main(){v_uv=(a_position+1.0)*0.5;gl_Position=vec4(a_position,0.0,1.0);}`;
 const fragment = `precision mediump float; uniform sampler2D u_image; uniform float u_grid; varying vec2 v_uv;
@@ -121,21 +122,23 @@ export function PixelPortrait() {
     animateRef.current(pinned.current);
   }
   return (
-    <button
-      className="portrait"
-      type="button"
-      onClick={toggle}
-      aria-label={revealed ? "Pixelate portrait" : "Reveal portrait"}
-      aria-pressed={revealed}
-      onPointerEnter={(e) => {
-        if (e.pointerType === "mouse") animateRef.current(true);
-      }}
-      onPointerLeave={() => animateRef.current(pinned.current)}
-      onFocus={() => animateRef.current(true)}
-      onBlur={() => animateRef.current(pinned.current)}
-    >
-      <Image src="/media/marcio.jpg" alt="Marcio Barrios" width={96} height={96} priority />
-      <canvas ref={canvasRef} width={288} height={288} aria-hidden="true" />
-    </button>
+    <PortraitSecret>
+      <button
+        className="portrait"
+        type="button"
+        onClick={toggle}
+        aria-label={revealed ? "Pixelate portrait" : "Reveal portrait"}
+        aria-pressed={revealed}
+        onPointerEnter={(e) => {
+          if (e.pointerType === "mouse") animateRef.current(true);
+        }}
+        onPointerLeave={() => animateRef.current(pinned.current)}
+        onFocus={() => animateRef.current(true)}
+        onBlur={() => animateRef.current(pinned.current)}
+      >
+        <Image src="/media/marcio.jpg" alt="Marcio Barrios" width={96} height={96} priority />
+        <canvas ref={canvasRef} width={288} height={288} aria-hidden="true" />
+      </button>
+    </PortraitSecret>
   );
 }
