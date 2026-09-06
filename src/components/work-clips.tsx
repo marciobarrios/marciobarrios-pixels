@@ -119,7 +119,10 @@ export function WorkClips() {
       <div className="section-header">
         <div className="craft-heading">
           <h2 id="craft-title">A few things in motion</h2>
-          <p className="craft-note">Small details from the MITO canvas. Click for a closer look.</p>
+          <p className="craft-note">
+            Small details from the MITO canvas.{" "}
+            <span className="craft-note-click">Click for a closer look.</span>
+          </p>
         </div>
         <button
           className="motion-toggle"

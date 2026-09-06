@@ -525,6 +525,9 @@ summary.work-row::-webkit-details-marker {
   font-size: 12px;
   color: var(--muted-foreground);
 }
+.craft-note-click {
+  display: inline;
+}
 .clip-dialog {
   width: min(780px, calc(100vw - 32px));
   max-width: min(780px, calc(100vw - 32px));
@@ -851,9 +854,6 @@ summary.work-row::-webkit-details-marker {
   .craft-section {
     margin-top: 36px;
   }
-  .motion-toggle {
-    padding-bottom: 2px;
-  }
   .clip-grid {
     gap: 8px;
   }
@@ -876,6 +876,9 @@ summary.work-row::-webkit-details-marker {
   .craft-note {
     font-size: 12px;
     line-height: 1.8;
+  }
+  .craft-note-click {
+    display: block;
   }
   .clip-expand {
     opacity: 0.8;
