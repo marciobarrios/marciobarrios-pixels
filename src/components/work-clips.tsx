@@ -128,7 +128,7 @@ export function WorkClips() {
   const moving = preference ?? !reducedMotion;
   return (
     <section className="craft-section mt-[49px] max-[600px]:mt-9" aria-labelledby="craft-title">
-      <div className="section-header mb-3.5 flex min-h-6 items-end justify-between">
+      <div className="section-header mb-5 flex min-h-6 items-end justify-between max-[600px]:mb-[15px]">
         <div className="craft-heading">
           <h2 id="craft-title" className="text-[12px] font-[550] tracking-[-0.25px]">
             A few things in motion
