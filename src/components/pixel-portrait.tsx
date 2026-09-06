@@ -122,7 +122,7 @@ export function PixelPortrait() {
   }
   return (
     <button
-      className="portrait"
+      className="portrait relative size-[88px] shrink-0 -rotate-3 rounded-[11px] bg-muted shadow-[0_0_0_1px_#00000009,0_3px_5px_#202c2110] transition-transform duration-250 ease-out pointer-fine:hover:-translate-y-0.5 pointer-fine:hover:rotate-0 max-[600px]:size-[76px] max-[360px]:size-[66px]"
       type="button"
       onClick={toggle}
       aria-label={revealed ? "Pixelate portrait" : "Reveal portrait"}
@@ -134,8 +134,21 @@ export function PixelPortrait() {
       onFocus={() => animateRef.current(true)}
       onBlur={() => animateRef.current(pinned.current)}
     >
-      <Image src="/media/marcio.jpg" alt="Marcio Barrios" width={96} height={96} priority />
-      <canvas ref={canvasRef} width={288} height={288} aria-hidden="true" />
+      <Image
+        className="size-full rounded-[inherit] object-cover"
+        src="/media/marcio.jpg"
+        alt="Marcio Barrios"
+        width={96}
+        height={96}
+        priority
+      />
+      <canvas
+        className="absolute inset-0 size-full rounded-[inherit] object-cover opacity-0 data-[ready=true]:opacity-100"
+        ref={canvasRef}
+        width={288}
+        height={288}
+        aria-hidden="true"
+      />
     </button>
   );
 }

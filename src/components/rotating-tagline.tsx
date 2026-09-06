@@ -65,24 +65,31 @@ export function RotatingTagline() {
   }, [moving]);
 
   return (
-    <p className="tagline" ref={taglineRef} data-animated={step > 0 && moving}>
+    <p
+      className="tagline mt-2.5 flex w-fit items-center text-[12px] text-primary max-[600px]:mt-2 max-[600px]:text-[11px] [&[data-animated=true]_[data-state=active]_.tagline-word]:animate-tagline-in [&[data-animated=true]_[data-state=exiting]_.tagline-word]:animate-tagline-out"
+      ref={taglineRef}
+      data-animated={step > 0 && moving}
+    >
       <span className="sr-only">{phrases.map((phrase) => `I ${phrase}.`).join(" ")}</span>
-      <span className="tagline-copy" aria-hidden="true">
+      <span className="tagline-copy inline-flex leading-[1.5]" aria-hidden="true">
         <span>I&nbsp;</span>
-        <span className="tagline-phrases">
+        <span className="tagline-phrases inline-grid overflow-hidden">
           {phrases.map((phrase, index) => (
             <span
-              className="tagline-phrase"
+              className="tagline-phrase invisible [grid-area:1/1] whitespace-nowrap data-[state=active]:visible data-[state=exiting]:visible"
               key={phrase}
               data-state={index === active ? "active" : index === previous ? "exiting" : "idle"}
             >
               {phrase.split(" ").map((word, wordIndex, words) => (
                 <span key={`${wordIndex}-${word}`}>
                   {wordIndex > 0 ? " " : null}
-                  <span className="tagline-word" style={{ animationDelay: `${wordIndex * 35}ms` }}>
+                  <span
+                    className="tagline-word inline-block"
+                    style={{ animationDelay: `${wordIndex * 35}ms` }}
+                  >
                     {word}
                     {wordIndex === words.length - 1 ? (
-                      <span className="pixel-period">.</span>
+                      <span className="pixel-period ml-0.5 inline-block font-bold">.</span>
                     ) : null}
                   </span>
                 </span>

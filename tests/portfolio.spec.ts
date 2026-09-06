@@ -35,6 +35,79 @@ test("content, media, and metadata load without runtime errors", async ({ page, 
   expect(errors).toEqual([]);
 });
 
+test("motion transitions cover every property their states change", async ({ page }) => {
+  await page.goto("/");
+
+  const transitions = await page.evaluate(() => {
+    const read = (selector: string) => {
+      const element = document.querySelector(selector);
+      if (!element) throw new Error(`Missing motion target: ${selector}`);
+      const style = getComputedStyle(element);
+      return {
+        property: style.transitionProperty,
+        duration: style.transitionDuration,
+        timing: style.transitionTimingFunction,
+      };
+    };
+
+    return {
+      favicon: read(".inline-link .favicon"),
+      inlineUnderline: read(".inline-link > span:not(.favicon):not(.sr-only)"),
+      externalArrow: read(".external-arrow"),
+      portrait: read(".portrait"),
+      workChevron: read(".work-chevron"),
+      clipVideo: read(".clip-trigger video"),
+      clipExpand: read(".clip-expand"),
+      projectRow: read(".project-row"),
+      projectCategory: read(".project-category"),
+      projectArrow: read(".project-arrow"),
+      pixel: read(".pixel-toy i"),
+    };
+  });
+
+  expect(transitions.favicon).toEqual({
+    property: "translate, rotate, scale, filter",
+    duration: "0.22s, 0.22s, 0.22s, 0.18s",
+    timing:
+      "cubic-bezier(0.2, 0.8, 0.2, 1), cubic-bezier(0.2, 0.8, 0.2, 1), cubic-bezier(0.2, 0.8, 0.2, 1), ease",
+  });
+  expect(transitions.inlineUnderline).toEqual({
+    property: "text-decoration-color",
+    duration: "0.16s",
+    timing: "ease",
+  });
+  expect(transitions.externalArrow).toEqual({
+    property: "translate, opacity",
+    duration: "0.18s",
+    timing: "ease",
+  });
+  expect(transitions.portrait.property).toBe("transform, translate, scale, rotate");
+  expect(transitions.portrait.duration).toBe("0.25s");
+  expect(transitions.workChevron.property).toBe("transform, translate, scale, rotate");
+  expect(transitions.workChevron.duration).toBe("0.2s");
+  expect(transitions.clipVideo.property).toBe("transform, translate, scale, rotate");
+  expect(transitions.clipVideo.duration).toBe("0.35s");
+  for (const transition of [
+    transitions.clipExpand,
+    transitions.projectCategory,
+    transitions.projectArrow,
+  ]) {
+    expect(transition).toEqual({
+      property: "translate, opacity",
+      duration: "0.18s",
+      timing: "ease",
+    });
+  }
+  expect(transitions.projectRow).toEqual({
+    property: "background-color",
+    duration: "0.18s",
+    timing: "ease",
+  });
+  expect(transitions.pixel.property).toBe("transform");
+  expect(transitions.pixel.duration).toBe("0.64s");
+  expect(transitions.pixel.timing).toBe("cubic-bezier(0.2, 0.8, 0.3, 1.25)");
+});
+
 test("theme persists and both themes meet accessibility checks", async ({ page }) => {
   await page.goto("/");
   await expect(page.locator("html")).not.toHaveClass(/dark/);
