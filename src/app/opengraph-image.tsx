@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
-export const alt = "Marcio Barrios — Design Engineer. I move pixels.";
+export const alt = "Marcio Barrios ⋅ Design Engineer. I move pixels.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 export default async function OpenGraphImage() {

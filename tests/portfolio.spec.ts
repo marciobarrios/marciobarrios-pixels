@@ -5,7 +5,7 @@ test("content, media, and metadata load without runtime errors", async ({ page, 
   const errors: string[] = [];
   page.on("pageerror", (error) => errors.push(error.message));
   await page.goto("/");
-  await expect(page).toHaveTitle("Marcio Barrios — Design Engineer");
+  await expect(page).toHaveTitle("Marcio Barrios ⋅ Design Engineer");
   await expect(page.locator(".project-row")).toHaveCount(7);
   await expect(page.locator(".current-work")).toHaveAttribute("open", "");
   await page.locator("footer").scrollIntoViewIfNeeded();

@@ -5,11 +5,11 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://marciobarrios-pixels.vercel.app"),
-  title: "Marcio Barrios — Design Engineer",
+  title: "Marcio Barrios ⋅ Design Engineer",
   description:
     "I move pixels. Design Engineer in Barcelona, currently building the filmmaking canvas at MITO AI. Selected work, side projects, and small details.",
   openGraph: {
-    title: "Marcio Barrios — I move pixels.",
+    title: "Marcio Barrios ⋅ I move pixels.",
     description: "Design Engineer in Barcelona. Currently building at MITO AI.",
     type: "website",
     locale: "en_US",
