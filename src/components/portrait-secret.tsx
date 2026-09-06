@@ -224,7 +224,7 @@ export function PortraitSecret({ children }: { children: ReactElement }) {
           ref={triggerRef}
           render={children}
           openOnHover
-          delay={250}
+          delay={1000}
           closeDelay={150}
           onFocus={(event) => {
             if (restoringFocusRef.current) {
