@@ -1,27 +1,34 @@
 "use client";
-import { useEffect } from "react";
+import { useLayoutEffect } from "react";
 import { Sun, Moon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 
+const THEME_STORAGE_KEY = "mb-theme";
+
 export function ThemeToggle() {
-  useEffect(() => {
+  useLayoutEffect(() => {
     const query = window.matchMedia("(prefers-color-scheme: dark)");
     const sync = () => {
       try {
-        if (!localStorage.getItem("mb-theme"))
-          document.documentElement.classList.toggle("dark", query.matches);
+        const savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
+        document.documentElement.classList.toggle(
+          "dark",
+          savedTheme === "dark" || (savedTheme !== "light" && query.matches),
+        );
       } catch {
         document.documentElement.classList.toggle("dark", query.matches);
       }
     };
+    sync();
     query.addEventListener("change", sync);
     return () => query.removeEventListener("change", sync);
   }, []);
+
   function toggle() {
     const dark = document.documentElement.classList.toggle("dark");
     try {
-      localStorage.setItem("mb-theme", dark ? "dark" : "light");
+      localStorage.setItem(THEME_STORAGE_KEY, dark ? "dark" : "light");
     } catch {
       /* Theme still works if storage is disabled. */
     }
