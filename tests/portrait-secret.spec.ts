@@ -66,11 +66,16 @@ test("the complete code unlocks all six personal details and restores focus", as
   await expect(dialog).toBeVisible();
   await expect(dialog.getByRole("heading", { name: secretName })).toBeFocused();
   await expect(dialog.locator("li")).toHaveCount(6);
-  await expect(dialog).toContainText("I am half Spanish, half Honduran");
-  await expect(dialog).toContainText("I live in sunny Barcelona");
-  await expect(dialog).toContainText("I love to spend time with family");
+  await expect(dialog).toContainText("Half Spanish, half Honduran");
+  await expect(dialog.getByRole("link", { name: /Made in Honduras/ })).toHaveAttribute(
+    "href",
+    "http://madeinhonduras.net/",
+  );
+  await expect(dialog).toContainText("is an old side project of mine");
+  await expect(dialog).toContainText("I live close to the sea in sunny Badalona");
+  await expect(dialog).toContainText("I love spending time with family");
   await expect(dialog).toContainText("a year off to travel around Asia and Latin America");
-  await expect(dialog).toContainText("I like to work out too");
+  await expect(dialog).toContainText("and work out too");
   await expect(dialog.getByRole("link", { name: /Viajo Luego Existo/ })).toHaveAttribute(
     "href",
     "https://www.viajoluegoexisto.co/blog",

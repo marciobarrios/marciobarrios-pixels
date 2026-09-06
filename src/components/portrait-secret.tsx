@@ -51,28 +51,34 @@ function PersonalLink({ href, children }: { href: string; children: ReactNode })
   );
 }
 
-// The six personal details below are from the section after
-// “Still here? Do you want to know more about me?” on https://marciobarrios.com/.
+// Adapted from the personal section on https://marciobarrios.com/,
+// with Marcio’s updated home and side-project details.
 const personalDetails = [
   {
     title: "Roots",
     icon: Globe2,
     content: (
       <>
-        I am half Spanish, half{" "}
-        <PersonalLink href="http://madeinhonduras.net/">Honduran</PersonalLink>.
+        Half Spanish, half Honduran.{" "}
+        <PersonalLink href="http://madeinhonduras.net/">Made in Honduras</PersonalLink> is an old
+        side project of mine. Yes, even my roots have a URL.
       </>
     ),
   },
-  { title: "Home", icon: Sun, content: <>I live in sunny Barcelona.</> },
+  {
+    title: "Home",
+    icon: Sun,
+    content: <>I live close to the sea in sunny Badalona. This is me trying not to sound smug.</>,
+  },
   {
     title: "Good company",
     icon: Heart,
     content: (
       <>
-        I love to spend time with{" "}
+        I love spending time with{" "}
         <PersonalLink href="https://www.instagram.com/p/BuYCIw1lBwi/">family</PersonalLink> and{" "}
-        <PersonalLink href="https://www.instagram.com/p/BsVtyjWFkzo/">friends</PersonalLink>.
+        <PersonalLink href="https://www.instagram.com/p/BsVtyjWFkzo/">friends</PersonalLink>. Easily
+        my best excuse for ignoring a notification.
       </>
     ),
   },
@@ -81,12 +87,11 @@ const personalDetails = [
     icon: Backpack,
     content: (
       <>
-        I{" "}
         <PersonalLink href="https://www.instagram.com/viajoluegoexisto.co/">
-          travel a lot
+          Backpacking
         </PersonalLink>{" "}
-        as a backpacker (my biggest passion by far), I even took a year off to travel around Asia
-        and Latin America.
+        is my biggest passion. I took a year off to travel around Asia and Latin America. A slightly
+        ambitious out-of-office reply.
       </>
     ),
   },
@@ -95,10 +100,11 @@ const personalDetails = [
     icon: Dumbbell,
     content: (
       <>
-        I <PersonalLink href="https://www.instagram.com/p/B03ucijBkEO/">practice</PersonalLink>{" "}
+        I like to{" "}
+        <PersonalLink href="https://www.instagram.com/p/B03ucijBkEO/">practice</PersonalLink>{" "}
         <PersonalLink href="https://www.instagram.com/p/BphlEfBldLr/">different</PersonalLink>{" "}
-        <PersonalLink href="https://www.instagram.com/p/BtZJeRnFIvJ/">sports</PersonalLink> (I like
-        to work out too, but that’s not a sport, is it?)
+        <PersonalLink href="https://www.instagram.com/p/BtZJeRnFIvJ/">sports</PersonalLink> and work
+        out too. Apparently, moving pixels doesn’t count as exercise.
       </>
     ),
   },
@@ -107,9 +113,9 @@ const personalDetails = [
     icon: Camera,
     content: (
       <>
-        I like photography and writing, and the result of both is{" "}
+        I like photography and writing, so I made{" "}
         <PersonalLink href="https://www.viajoluegoexisto.co/blog">Viajo Luego Existo</PersonalLink>,
-        a travel blog.
+        a travel blog. Holiday photos, but with paragraphs.
       </>
     ),
   },
@@ -313,7 +319,7 @@ export function PortraitSecret({ children }: { children: ReactElement }) {
               Beyond the pixels.
             </DialogTitle>
             <DialogDescription className="secret-dialog-description">
-              A few things about the person behind the screen.
+              You entered ten keys to unlock a biography. I respect the commitment.
             </DialogDescription>
           </div>
           <ul className="secret-details">
@@ -330,7 +336,7 @@ export function PortraitSecret({ children }: { children: ReactElement }) {
             ))}
           </ul>
           <div className="secret-dialog-footer">
-            <span>Thanks for being curious.</span>
+            <span>Small talk: unlocked.</span>
             <DialogClose render={<Button variant="outline" />}>Back to the pixels</DialogClose>
           </div>
         </DialogContent>
