@@ -104,7 +104,7 @@ export default function Home() {
               open
             >
               <summary className="work-row flex min-h-[58px] list-none items-center gap-3.5 text-[12px] max-[600px]:gap-2.5 [&::-webkit-details-marker]:hidden">
-                <Favicon icon="mito.svg" />
+                <Favicon icon="mito.svg" className="mt-[14px] self-start" />
                 <div className="work-name flex-1 font-medium tracking-[-0.2px]">
                   <span className="flex items-center gap-2">MITO AI</span>
                   <span className="work-role mt-[3px] block text-[10px] font-normal text-(--secondary)">
