@@ -4,6 +4,7 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { ExternalLink, Favicon } from "@/components/external-link";
 import { WorkClips } from "@/components/work-clips";
 import { PixelPlayground } from "@/components/pixel-playground";
+import { RotatingTagline } from "@/components/rotating-tagline";
 import { projects } from "@/lib/content";
 
 export default function Home() {
@@ -32,12 +33,7 @@ export default function Home() {
               <div>
                 <h1 id="intro-title">Marcio Barrios</h1>
                 <p className="role">Design Engineer</p>
-                <p className="tagline">
-                  I move pixels
-                  <span className="pixel-period" aria-hidden="true">
-                    .
-                  </span>
-                </p>
+                <RotatingTagline />
               </div>
             </div>
             <div className="intro-copy reveal delay-1">
