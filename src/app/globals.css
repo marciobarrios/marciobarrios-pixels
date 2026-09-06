@@ -455,7 +455,7 @@ summary.work-row::-webkit-details-marker {
 }
 .motion-toggle {
   display: inline-flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: flex-end;
   gap: 6px;
   min-width: 55px;
