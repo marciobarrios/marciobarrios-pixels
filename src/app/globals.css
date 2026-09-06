@@ -558,7 +558,7 @@ summary.work-row::-webkit-details-marker {
 }
 .dialog-credit {
   color: var(--muted-foreground);
-  font-size: 9px;
+  font-size: 10px;
 }
 .projects-section {
   margin-top: 56px;
@@ -602,7 +602,7 @@ summary.work-row::-webkit-details-marker {
 }
 .project-category {
   margin-left: 12px;
-  font-size: 9px;
+  font-size: 10px;
   color: var(--muted-foreground);
   font-weight: 400;
   opacity: 0;
@@ -782,7 +782,7 @@ summary.work-row::-webkit-details-marker {
     gap: 8px;
   }
   .location {
-    font-size: 9px;
+    font-size: 10px;
   }
   .intro {
     margin-top: 45px;
@@ -822,7 +822,7 @@ summary.work-row::-webkit-details-marker {
     margin-top: 38px;
   }
   .section-header > span {
-    font-size: 9px;
+    font-size: 10px;
   }
   .section-header {
     margin-bottom: 15px;
@@ -834,10 +834,10 @@ summary.work-row::-webkit-details-marker {
     gap: 10px;
   }
   .work-years {
-    font-size: 9px;
+    font-size: 10px;
   }
   .work-role {
-    font-size: 9px;
+    font-size: 10px;
   }
   .work-detail {
     padding-left: 32px;
@@ -848,7 +848,7 @@ summary.work-row::-webkit-details-marker {
     padding: 4px 13px 0;
   }
   .old-days {
-    font-size: 9px;
+    font-size: 10px;
     margin-left: 13px;
   }
   .craft-section {
@@ -865,12 +865,12 @@ summary.work-row::-webkit-details-marker {
     margin-top: 8px;
   }
   .clip-caption p {
-    font-size: 9px;
+    font-size: 10px;
     line-height: 1.6;
   }
   .clip-caption > span {
     display: block;
-    font-size: 9px;
+    font-size: 10px;
     margin-top: 3px;
   }
   .craft-note {
@@ -919,10 +919,10 @@ summary.work-row::-webkit-details-marker {
     width: 100px;
   }
   .pixel-controls p {
-    font-size: 9px;
+    font-size: 10px;
   }
   .footer {
-    font-size: 9px;
+    font-size: 10px;
   }
 }
 @media (max-width: 360px) {
@@ -940,13 +940,13 @@ summary.work-row::-webkit-details-marker {
     gap: 16px;
   }
   .section-header > span {
-    font-size: 8px;
+    font-size: 10px;
   }
   .work-row {
     gap: 8px;
   }
   .clip-caption p {
-    font-size: 9px;
+    font-size: 10px;
   }
 }
 @media (prefers-reduced-motion: reduce) {
