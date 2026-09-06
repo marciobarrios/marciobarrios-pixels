@@ -125,6 +125,7 @@ export function PortraitSecret({ children }: { children: ReactElement }) {
   const sequenceRef = useRef<string[]>([]);
   const [progress, setProgress] = useState(0);
   const [hintOpen, setHintOpen] = useState(false);
+  const [hintInstant, setHintInstant] = useState(false);
   const [open, setOpen] = useState(false);
 
   function resetCode() {
@@ -187,6 +188,7 @@ export function PortraitSecret({ children }: { children: ReactElement }) {
       return;
     }
     const key = event.key.length === 1 ? event.key.toLowerCase() : event.key;
+    if (hintOpen) setHintInstant(true);
     if (enterKey(key) && key.startsWith("Arrow")) event.preventDefault();
   });
 
@@ -201,7 +203,22 @@ export function PortraitSecret({ children }: { children: ReactElement }) {
 
   return (
     <>
-      <Popover.Root open={hintOpen && !open} triggerId={triggerId} onOpenChange={setHintOpen}>
+      <Popover.Root
+        open={hintOpen && !open}
+        triggerId={triggerId}
+        onOpenChange={(nextOpen, details) => {
+          // Focus changes and keyboard-generated clicks should disclose the hint immediately.
+          setHintInstant(
+            details.event instanceof KeyboardEvent ||
+              details.reason === "trigger-focus" ||
+              details.reason === "focus-out" ||
+              (details.event instanceof MouseEvent &&
+                details.event.type === "click" &&
+                details.event.detail === 0),
+          );
+          setHintOpen(nextOpen);
+        }}
+      >
         <Popover.Trigger
           id={triggerId}
           ref={triggerRef}
@@ -214,7 +231,10 @@ export function PortraitSecret({ children }: { children: ReactElement }) {
               restoringFocusRef.current = false;
               return;
             }
-            if (!open && event.currentTarget.matches(":focus-visible")) setHintOpen(true);
+            if (!open && event.currentTarget.matches(":focus-visible")) {
+              setHintInstant(true);
+              setHintOpen(true);
+            }
           }}
         />
         <Popover.Portal>
@@ -228,6 +248,7 @@ export function PortraitSecret({ children }: { children: ReactElement }) {
             <Popover.Popup
               ref={popupRef}
               className="secret-hint"
+              data-keyboard={hintInstant ? "" : undefined}
               initialFocus={false}
               finalFocus={false}
             >
