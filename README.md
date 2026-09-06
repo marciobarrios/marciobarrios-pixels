@@ -26,7 +26,8 @@ Open [localhost:3000](http://localhost:3000). No environment variables or databa
 
 - `src/app/page.tsx`: introduction, social links, career history, and footer.
 - `src/lib/content.ts`: project descriptions, links, and MITO video clips.
-- `src/app/globals.css`: colors, layout, typography, animations, and responsive styles.
+- `src/app/globals.css`: global color tokens, base behavior, and animation keyframes. Component
+  layout, typography, states, and responsive styles live in Tailwind utilities beside the markup.
 - `public/media`: portrait, MITO recordings, and video posters.
 - `public/icons`: project favicons.
 - `src/app/opengraph-image.tsx`: social sharing image, generated at build time.

@@ -27,11 +27,15 @@ const themeScript = `(function(){try{var t=localStorage.getItem('mb-theme');docu
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={GeistMono.variable} suppressHydrationWarning>
+    <html
+      lang="en"
+      className={`${GeistMono.variable} scroll-smooth scroll-pt-8 motion-reduce:scroll-auto`}
+      suppressHydrationWarning
+    >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
-      <body>
+      <body className="m-0 bg-background font-sans text-[13px] text-foreground antialiased selection:bg-accent selection:text-accent-foreground before:pointer-events-none before:fixed before:inset-0 before:z-40 before:bg-(image:--noise) before:opacity-[0.08] before:content-[''] dark:before:opacity-[0.045]">
         <TooltipProvider>{children}</TooltipProvider>
       </body>
     </html>

@@ -22,10 +22,17 @@ const pixels = cursor.flatMap((row, y) =>
 export function PixelPlayground() {
   const [moved, setMoved] = useState(false);
   return (
-    <div className="pixel-playground" data-moved={moved}>
-      <div className="pixel-toy" aria-hidden="true">
+    <div
+      className="pixel-playground group/pixel-playground mt-[26px] mb-6 flex min-h-[108px] items-center gap-2.5 max-[600px]:gap-1"
+      data-moved={moved}
+    >
+      <div
+        className="pixel-toy relative h-[100px] w-[114px] shrink-0 max-[600px]:w-[100px]"
+        aria-hidden="true"
+      >
         {pixels.map(({ x, y }, i) => (
           <i
+            className="absolute size-[5px] bg-primary transition-transform duration-640 ease-[cubic-bezier(0.2,0.8,0.3,1.25)] [transition-delay:var(--delay)] group-data-[moved=true]/pixel-playground:[transform:translate(var(--dx),var(--dy))_rotate(var(--rotation))]"
             key={`${x}-${y}`}
             style={
               {
@@ -41,7 +48,10 @@ export function PixelPlayground() {
         ))}
       </div>
       <div className="pixel-controls">
-        <label className="pixel-label" htmlFor="move-pixels">
+        <label
+          className="pixel-label flex min-h-11 w-fit cursor-pointer items-center gap-[9px] text-[11px]"
+          htmlFor="move-pixels"
+        >
           <Checkbox
             id="move-pixels"
             checked={moved}
@@ -49,7 +59,10 @@ export function PixelPlayground() {
           />
           <span>Move pixels</span>
         </label>
-        <p aria-live="polite">
+        <p
+          className="min-h-[31px] text-[10px] leading-[1.7] text-muted-foreground"
+          aria-live="polite"
+        >
           {moved ? "You’re a natural. Uncheck to tidy up." : "Go on. It’s basically my job."}
         </p>
       </div>

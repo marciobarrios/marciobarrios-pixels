@@ -33,14 +33,14 @@ export function ThemeToggle() {
           <Button
             variant="ghost"
             size="icon"
-            className="theme-toggle"
+            className="theme-toggle size-11 rounded-full text-(--secondary)"
             onClick={toggle}
             aria-label="Toggle color theme"
           />
         }
       >
-        <Sun className="sun-icon" size={16} />
-        <Moon className="moon-icon" size={16} />
+        <Sun className="sun-icon dark:hidden" size={16} />
+        <Moon className="moon-icon hidden dark:block" size={16} />
       </TooltipTrigger>
       <TooltipContent>Different light, same pixels.</TooltipContent>
     </Tooltip>
