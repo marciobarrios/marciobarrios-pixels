@@ -451,17 +451,22 @@ summary.work-row::-webkit-details-marker {
   margin-top: 49px;
 }
 .craft-section .section-header {
+  align-items: flex-end;
   margin-bottom: 14px;
 }
 .motion-toggle {
   display: inline-flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: flex-end;
-  gap: 6px;
   min-width: 55px;
   min-height: 44px;
   color: var(--muted-foreground);
   font-size: 10px;
+}
+.motion-toggle-content {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
 .clip-grid {
   display: grid;
@@ -516,9 +521,12 @@ summary.work-row::-webkit-details-marker {
   color: var(--muted-foreground);
 }
 .craft-note {
-  margin-top: 17px;
-  font-size: 10px;
+  margin-top: 3px;
+  font-size: 12px;
   color: var(--muted-foreground);
+}
+.craft-note-click {
+  display: inline;
 }
 .clip-dialog {
   width: min(780px, calc(100vw - 32px));
@@ -866,8 +874,11 @@ summary.work-row::-webkit-details-marker {
     margin-top: 3px;
   }
   .craft-note {
-    font-size: 9px;
+    font-size: 12px;
     line-height: 1.8;
+  }
+  .craft-note-click {
+    display: block;
   }
   .clip-expand {
     opacity: 0.8;

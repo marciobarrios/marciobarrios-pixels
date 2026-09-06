@@ -117,15 +117,23 @@ export function WorkClips() {
   return (
     <section className="craft-section" aria-labelledby="craft-title">
       <div className="section-header">
-        <h2 id="craft-title">A few things in motion</h2>
+        <div className="craft-heading">
+          <h2 id="craft-title">A few things in motion</h2>
+          <p className="craft-note">
+            Small details from the MITO canvas.{" "}
+            <span className="craft-note-click">Click for a closer look.</span>
+          </p>
+        </div>
         <button
           className="motion-toggle"
           onClick={() => setPreference(!moving)}
           aria-label={moving ? "Pause previews" : "Play previews"}
           aria-pressed={moving}
         >
-          {moving ? <Pause size={11} /> : <Play size={11} />}
-          <span>{moving ? "Pause" : "Play"}</span>
+          <span className="motion-toggle-content">
+            {moving ? <Pause size={11} /> : <Play size={11} />}
+            <span>{moving ? "Pause" : "Play"}</span>
+          </span>
         </button>
       </div>
       <div className="clip-grid">
@@ -133,7 +141,6 @@ export function WorkClips() {
           <Clip key={clip.id} clip={clip} moving={moving} />
         ))}
       </div>
-      <p className="craft-note">Small details from the MITO canvas. Click for a closer look.</p>
     </section>
   );
 }
