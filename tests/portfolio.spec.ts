@@ -141,6 +141,26 @@ test("theme persists and both themes meet accessibility checks", async ({ page }
   expect(dark.violations).toEqual([]);
 });
 
+test("theme follows the system until the visitor chooses one", async ({ page }) => {
+  await page.emulateMedia({ colorScheme: "dark" });
+  await page.goto("/");
+  await expect(page.locator("html")).toHaveClass(/dark/);
+
+  await page.emulateMedia({ colorScheme: "light" });
+  await expect(page.locator("html")).not.toHaveClass(/dark/);
+
+  await page.getByRole("button", { name: "Toggle color theme" }).click();
+  await expect(page.locator("html")).toHaveClass(/dark/);
+  await expect.poll(() => page.evaluate(() => localStorage.getItem("mb-theme"))).toBe("dark");
+
+  await page.emulateMedia({ colorScheme: "dark" });
+  await page.emulateMedia({ colorScheme: "light" });
+  await expect(page.locator("html")).toHaveClass(/dark/);
+
+  await page.reload();
+  await expect(page.locator("html")).toHaveClass(/dark/);
+});
+
 test("clip viewers play, close, and return focus", async ({ page }) => {
   await page.goto("/");
   for (const name of ["Image generation", "Stacked updates", "Canvas toolbar"]) {
