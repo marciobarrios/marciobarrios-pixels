@@ -54,9 +54,10 @@ export default function Home() {
                 .
               </p>
               <p>
-                Outside the canvas: family, a game of padel, or a backpack and a one-way ticket. I
-                like making things. And going places.
+                Outside the canvas: family, a game of padel, or backpacking with the kids in tow.
+                Always taking photos, still playing football on Sundays.
               </p>
+              <p>I like making things. And going places.</p>
             </div>
             <div className="social-links reveal delay-2">
               <ExternalLink href="https://github.com/marciobarrios" icon="github.ico">
