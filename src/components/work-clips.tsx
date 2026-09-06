@@ -56,7 +56,7 @@ function Clip({ clip, moving }: { clip: (typeof clips)[number]; moving: boolean 
             aria-hidden="true"
             src={`/media/${clip.id}.mp4`}
           />
-          <span className="clip-expand absolute right-2 bottom-2 translate-y-[3px] rounded-[5px] border border-[#ffffff12] bg-[#ffffff1c] p-1.5 text-white opacity-0 transition-[transform,opacity] duration-180 ease-[ease] group-focus-visible:translate-y-0 group-focus-visible:opacity-100 pointer-fine:group-hover:translate-y-0 pointer-fine:group-hover:opacity-100 max-[600px]:right-[5px] max-[600px]:bottom-[5px] max-[600px]:p-1 max-[600px]:opacity-80">
+          <span className="clip-expand absolute right-2 bottom-2 translate-y-[3px] rounded-[5px] border border-[#ffffff12] bg-[#ffffff1c] p-1.5 text-white opacity-0 transition-[translate,opacity] duration-180 ease-[ease] group-focus-visible:translate-y-0 group-focus-visible:opacity-100 pointer-fine:group-hover:translate-y-0 pointer-fine:group-hover:opacity-100 max-[600px]:right-[5px] max-[600px]:bottom-[5px] max-[600px]:p-1 max-[600px]:opacity-80">
             <Maximize2 size={13} />
           </span>
         </DialogTrigger>

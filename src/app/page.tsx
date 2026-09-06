@@ -201,13 +201,13 @@ export default function Home() {
                   href={project.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="project-row group -mx-[9px] flex items-start gap-[15px] rounded-[8px] px-[9px] py-[15px] transition-colors duration-180 ease-[ease] pointer-fine:hover:bg-muted max-[600px]:gap-3 max-[600px]:py-3.5"
+                  className="project-row group -mx-[9px] flex items-start gap-[15px] rounded-[8px] px-[9px] py-[15px] transition-[background-color] duration-180 ease-[ease] pointer-fine:hover:bg-muted max-[600px]:gap-3 max-[600px]:py-3.5"
                 >
                   <Favicon icon={project.icon} />
                   <div className="project-copy min-w-0 flex-1">
                     <h3 className="text-[13px] leading-[22px] font-medium tracking-[-0.3px] max-[600px]:text-[12px]">
                       {project.name}
-                      <span className="project-category ml-3 inline-block -translate-x-1 text-[10px] font-normal text-muted-foreground opacity-0 transition-[transform,opacity] duration-180 ease-[ease] group-focus-visible:translate-x-0 group-focus-visible:opacity-100 pointer-fine:group-hover:translate-x-0 pointer-fine:group-hover:opacity-100 max-[600px]:hidden">
+                      <span className="project-category ml-3 inline-block -translate-x-1 text-[10px] font-normal text-muted-foreground opacity-0 transition-[translate,opacity] duration-180 ease-[ease] group-focus-visible:translate-x-0 group-focus-visible:opacity-100 pointer-fine:group-hover:translate-x-0 pointer-fine:group-hover:opacity-100 max-[600px]:hidden">
                         {project.category}
                       </span>
                     </h3>
@@ -216,7 +216,7 @@ export default function Home() {
                     </p>
                   </div>
                   <ArrowUpRight
-                    className="project-arrow mt-1 shrink-0 text-muted-foreground opacity-60 transition-[transform,opacity] duration-180 ease-[ease] pointer-fine:group-hover:translate-x-px pointer-fine:group-hover:-translate-y-px pointer-fine:group-hover:opacity-100 max-[600px]:w-3"
+                    className="project-arrow mt-1 shrink-0 text-muted-foreground opacity-60 transition-[translate,opacity] duration-180 ease-[ease] pointer-fine:group-hover:translate-x-px pointer-fine:group-hover:-translate-y-px pointer-fine:group-hover:opacity-100 max-[600px]:w-3"
                     size={15}
                     aria-hidden="true"
                   />
@@ -237,9 +237,9 @@ export default function Home() {
             <PixelPlayground />
           </section>
         </main>
-        <footer className="footer flex items-center justify-between border-t border-border py-4 pb-6 text-[10px] text-muted-foreground [&>a]:inline-flex [&>a]:min-h-11 [&>a]:items-center [&>a]:gap-[7px] pointer-fine:[&>a:hover]:text-primary">
+        <footer className="footer flex items-center justify-between border-t border-border py-4 pb-6 text-[10px] text-muted-foreground [&>a]:inline-flex [&>a]:min-h-11 [&>a]:items-center [&>a]:gap-[7px]">
           <span>© 2026 Marcio Barrios</span>
-          <a href="#top">
+          <a className="pointer-fine:hover:text-primary" href="#top">
             Back to top
             <ArrowUp size={12} aria-hidden="true" />
           </a>

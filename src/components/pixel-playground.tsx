@@ -32,7 +32,7 @@ export function PixelPlayground() {
       >
         {pixels.map(({ x, y }, i) => (
           <i
-            className="absolute size-[5px] bg-primary transition-transform duration-640 ease-[cubic-bezier(0.2,0.8,0.3,1.25)] [transition-delay:var(--delay)] group-data-[moved=true]/pixel-playground:[transform:translate(var(--dx),var(--dy))_rotate(var(--rotation))]"
+            className="absolute size-[5px] bg-primary transition-[transform] duration-640 ease-[cubic-bezier(0.2,0.8,0.3,1.25)] [transition-delay:var(--delay)] group-data-[moved=true]/pixel-playground:[transform:translate(var(--dx),var(--dy))_rotate(var(--rotation))]"
             key={`${x}-${y}`}
             style={
               {

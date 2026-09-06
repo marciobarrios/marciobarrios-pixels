@@ -4,7 +4,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const faviconVariants = cva(
-  "favicon inline-flex shrink-0 items-center justify-center rounded-[5px] align-[-4px] [transition:transform_220ms_cubic-bezier(0.2,0.8,0.2,1),filter_180ms_ease] pointer-fine:group-hover:-translate-y-0.5 pointer-fine:group-hover:-rotate-[8deg] pointer-fine:group-hover:scale-[1.08]",
+  "favicon inline-flex shrink-0 items-center justify-center rounded-[5px] align-[-4px] [transition:translate_220ms_cubic-bezier(0.2,0.8,0.2,1),rotate_220ms_cubic-bezier(0.2,0.8,0.2,1),scale_220ms_cubic-bezier(0.2,0.8,0.2,1),filter_180ms_ease] pointer-fine:group-hover:-translate-y-0.5 pointer-fine:group-hover:-rotate-[8deg] pointer-fine:group-hover:scale-[1.08]",
   {
     variants: {
       size: {
@@ -70,7 +70,7 @@ export function ExternalLink({
         {children}
       </span>
       <ArrowUpRight
-        className="external-arrow self-center opacity-55 transition-[transform,opacity] duration-180 ease-[ease] pointer-fine:group-hover:translate-x-px pointer-fine:group-hover:-translate-y-px pointer-fine:group-hover:opacity-100"
+        className="external-arrow self-center opacity-55 transition-[translate,opacity] duration-180 ease-[ease] pointer-fine:group-hover:translate-x-px pointer-fine:group-hover:-translate-y-px pointer-fine:group-hover:opacity-100"
         size={12}
         aria-hidden="true"
       />
