@@ -451,6 +451,7 @@ summary.work-row::-webkit-details-marker {
   margin-top: 49px;
 }
 .craft-section .section-header {
+  align-items: flex-end;
   margin-bottom: 14px;
 }
 .motion-toggle {
@@ -460,6 +461,7 @@ summary.work-row::-webkit-details-marker {
   gap: 6px;
   min-width: 55px;
   min-height: 44px;
+  padding-bottom: 2px;
   color: var(--muted-foreground);
   font-size: 10px;
 }
