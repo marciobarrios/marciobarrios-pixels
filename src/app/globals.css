@@ -522,7 +522,7 @@ summary.work-row::-webkit-details-marker {
 }
 .craft-note {
   margin-top: 3px;
-  font-size: 10px;
+  font-size: 12px;
   color: var(--muted-foreground);
 }
 .clip-dialog {
@@ -874,7 +874,7 @@ summary.work-row::-webkit-details-marker {
     margin-top: 3px;
   }
   .craft-note {
-    font-size: 9px;
+    font-size: 12px;
     line-height: 1.8;
   }
   .clip-expand {
