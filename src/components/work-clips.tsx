@@ -127,8 +127,10 @@ export function WorkClips() {
           aria-label={moving ? "Pause previews" : "Play previews"}
           aria-pressed={moving}
         >
-          {moving ? <Pause size={11} /> : <Play size={11} />}
-          <span>{moving ? "Pause" : "Play"}</span>
+          <span className="motion-toggle-content">
+            {moving ? <Pause size={11} /> : <Play size={11} />}
+            <span>{moving ? "Pause" : "Play"}</span>
+          </span>
         </button>
       </div>
       <div className="clip-grid">

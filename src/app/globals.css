@@ -458,12 +458,15 @@ summary.work-row::-webkit-details-marker {
   display: inline-flex;
   align-items: flex-end;
   justify-content: flex-end;
-  gap: 6px;
   min-width: 55px;
   min-height: 44px;
-  padding-bottom: 2px;
   color: var(--muted-foreground);
   font-size: 10px;
+}
+.motion-toggle-content {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
 .clip-grid {
   display: grid;
@@ -847,6 +850,9 @@ summary.work-row::-webkit-details-marker {
   }
   .craft-section {
     margin-top: 36px;
+  }
+  .motion-toggle {
+    padding-bottom: 2px;
   }
   .clip-grid {
     gap: 8px;
