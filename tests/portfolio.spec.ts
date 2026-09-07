@@ -7,7 +7,7 @@ test("content, media, and metadata load without runtime errors", async ({ page, 
   await page.goto("/");
   await expect(page).toHaveTitle("Marcio Barrios ⋅ Design Engineer");
   await expect(page.locator(".project-row")).toHaveCount(7);
-  await expect(page.locator(".current-work")).toHaveAttribute("open", "");
+  await expect(page.locator(".current-work")).not.toHaveAttribute("open");
   await page.locator("footer").scrollIntoViewIfNeeded();
   await expect
     .poll(() =>
@@ -191,9 +191,9 @@ test("keyboard controls expand work and move pixels without shifting the page", 
   const summary = page.locator("summary");
   await summary.focus();
   await page.keyboard.press("Enter");
-  await expect(page.locator(".current-work")).not.toHaveAttribute("open");
-  await page.keyboard.press("Enter");
   await expect(page.locator(".current-work")).toHaveAttribute("open", "");
+  await page.keyboard.press("Enter");
+  await expect(page.locator(".current-work")).not.toHaveAttribute("open");
   const checkbox = page.getByRole("checkbox", { name: "Move pixels" });
   await checkbox.scrollIntoViewIfNeeded();
   await checkbox.focus();

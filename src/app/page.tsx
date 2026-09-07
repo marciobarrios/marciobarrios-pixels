@@ -99,10 +99,7 @@ export default function Home() {
               </h2>
               <span className="text-[10px] text-muted-foreground">A few chapters</span>
             </div>
-            <details
-              className="current-work group/current rounded-[10px] border border-border bg-[color-mix(in_srgb,var(--muted)_48%,transparent)] px-4 max-[600px]:px-3"
-              open
-            >
+            <details className="current-work group/current rounded-[10px] border border-border bg-[color-mix(in_srgb,var(--muted)_48%,transparent)] px-4 max-[600px]:px-3">
               <summary className="work-row flex min-h-[58px] list-none items-center gap-3.5 text-[12px] max-[600px]:gap-2.5 [&::-webkit-details-marker]:hidden">
                 <Favicon icon="mito.svg" />
                 <div className="work-name flex-1 font-medium tracking-[-0.2px]">

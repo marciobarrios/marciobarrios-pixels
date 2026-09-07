@@ -35,7 +35,7 @@ Open [localhost:3000](http://localhost:3000). No environment variables or databa
 ## Interactions
 
 - Hover over the portrait to reveal it. Click or tap to keep it clear, then click again to bring back the pixels. A static pixelated portrait is visible from the first load and remains available without JavaScript or WebGL. Regenerate it after changing the source photo with `node scripts/portrait-poster.mjs`.
-- The MITO section starts open. Its three silent video previews play while visible, with one button to pause them all. Open a preview to watch it with video controls and a text description.
+- The MITO section starts collapsed. Open it to reveal its three silent video previews, which play while visible, with one button to pause them all. Open a preview to watch it with video controls and a text description.
 - Toggle the checkbox near the footer to scatter and rebuild a pixel cursor.
 - Light and dark mode follow your system settings until you choose a theme. Your choice is saved in the browser.
 
