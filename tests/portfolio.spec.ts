@@ -54,7 +54,7 @@ test("motion transitions cover every property their states change", async ({ pag
       favicon: read(".inline-link .favicon"),
       inlineUnderline: read(".inline-link > span:not(.favicon):not(.sr-only)"),
       externalArrow: read(".external-arrow"),
-      portrait: read(".portrait"),
+      portrait: read(".portrait-visual"),
       workChevron: read(".work-chevron"),
       clipVideo: read(".clip-trigger video"),
       clipExpand: read(".clip-expand"),
@@ -82,7 +82,7 @@ test("motion transitions cover every property their states change", async ({ pag
     timing: "ease",
   });
   expect(transitions.portrait.property).toBe("transform, translate, scale, rotate");
-  expect(transitions.portrait.duration).toBe("0.25s");
+  expect(transitions.portrait.duration).toBe("0.15s");
   expect(transitions.workChevron.property).toBe("transform, translate, scale, rotate");
   expect(transitions.workChevron.duration).toBe("0.2s");
   expect(transitions.clipVideo.property).toBe("transform, translate, scale, rotate");

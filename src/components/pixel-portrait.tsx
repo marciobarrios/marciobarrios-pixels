@@ -10,6 +10,7 @@ export function PixelPortrait() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animateRef = useRef<(detailed: boolean) => void>(() => {});
   const pinned = useRef(false);
+  const requested = useRef(false);
   const [revealed, setRevealed] = useState(false);
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -67,10 +68,13 @@ export function PixelPortrait() {
     function draw(value: number) {
       gl!.uniform1f(grid, 28 + Math.pow(value, 3) * 692);
       gl!.drawArrays(gl!.TRIANGLES, 0, 6);
+      // Readiness never replaces the server-rendered poster; only interaction does.
+      const active = String(value > 0);
+      if (canvas!.dataset.active !== active) canvas!.dataset.active = active;
     }
     const photo = new window.Image();
     photo.onload = () => {
-      if (disposed) return;
+      if (disposed || gl.isContextLost()) return;
       gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
       gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, photo);
       gl.viewport(0, 0, canvas.width, canvas.height);
@@ -94,18 +98,24 @@ export function PixelPortrait() {
         };
         frame = requestAnimationFrame(tick);
       };
-      if (pinned.current) animateRef.current(true);
+      if (requested.current) animateRef.current(true);
+    };
+    photo.onerror = () => {
+      canvas.dataset.active = "false";
     };
     photo.src = "/media/marcio.jpg";
     const contextLost = (event: Event) => {
       event.preventDefault();
       canvas.dataset.ready = "false";
+      canvas.dataset.active = "false";
       cancelAnimationFrame(frame);
       animateRef.current = () => {};
     };
     canvas.addEventListener("webglcontextlost", contextLost);
     return () => {
       disposed = true;
+      photo.onload = null;
+      photo.onerror = null;
       cancelAnimationFrame(frame);
       animateRef.current = () => {};
       canvas.removeEventListener("webglcontextlost", contextLost);
@@ -115,40 +125,49 @@ export function PixelPortrait() {
       shaders.forEach((s) => gl.deleteShader(s));
     };
   }, []);
+  function requestDetail(detailed: boolean) {
+    requested.current = detailed;
+    animateRef.current(detailed);
+  }
   function toggle() {
     pinned.current = !pinned.current;
     setRevealed(pinned.current);
-    animateRef.current(pinned.current);
+    requestDetail(pinned.current);
   }
   return (
     <button
-      className="portrait relative size-[88px] shrink-0 -rotate-3 rounded-[11px] bg-muted shadow-[0_0_0_1px_#00000009,0_3px_5px_#202c2110] transition-transform duration-250 ease-out pointer-fine:hover:-translate-y-0.5 pointer-fine:hover:rotate-0 max-[600px]:size-[76px] max-[360px]:size-[66px]"
+      className="portrait group/portrait relative size-[88px] shrink-0 max-[600px]:size-[76px] max-[360px]:size-[66px]"
       type="button"
       onClick={toggle}
       aria-label={revealed ? "Pixelate portrait" : "Reveal portrait"}
       aria-pressed={revealed}
       onPointerEnter={(e) => {
-        if (e.pointerType === "mouse") animateRef.current(true);
+        if (e.pointerType === "mouse") requestDetail(true);
       }}
-      onPointerLeave={() => animateRef.current(pinned.current)}
-      onFocus={() => animateRef.current(true)}
-      onBlur={() => animateRef.current(pinned.current)}
+      onPointerLeave={() => requestDetail(pinned.current)}
+      onFocus={(e) => {
+        if (e.currentTarget.matches(":focus-visible")) requestDetail(true);
+      }}
+      onBlur={() => requestDetail(pinned.current)}
     >
-      <Image
-        className="size-full rounded-[inherit] object-cover"
-        src="/media/marcio.jpg"
-        alt="Marcio Barrios"
-        width={96}
-        height={96}
-        priority
-      />
-      <canvas
-        className="absolute inset-0 size-full rounded-[inherit] object-cover opacity-0 data-[ready=true]:opacity-100"
-        ref={canvasRef}
-        width={288}
-        height={288}
-        aria-hidden="true"
-      />
+      <span className="portrait-visual pointer-events-none relative block size-full -rotate-3 rounded-[11px] bg-muted shadow-[0_0_0_1px_#00000009,0_3px_5px_#202c2110] transition-transform duration-150 ease-[cubic-bezier(0.19,1,0.22,1)] motion-safe:pointer-fine:group-hover/portrait:-translate-y-0.5 motion-safe:pointer-fine:group-hover/portrait:rotate-0 motion-reduce:transition-none">
+        <Image
+          className="size-full rounded-[inherit] object-cover"
+          src="/media/marcio-pixelated.svg"
+          alt="Marcio Barrios"
+          width={96}
+          height={96}
+          preload
+          unoptimized
+        />
+        <canvas
+          className="absolute inset-0 size-full rounded-[inherit] object-cover opacity-0 data-[active=true]:opacity-100"
+          ref={canvasRef}
+          width={288}
+          height={288}
+          aria-hidden="true"
+        />
+      </span>
     </button>
   );
 }
