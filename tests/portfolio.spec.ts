@@ -7,7 +7,7 @@ test("content, media, and metadata load without runtime errors", async ({ page, 
   await page.goto("/");
   await expect(page).toHaveTitle("Marcio Barrios ⋅ Design Engineer");
   await expect(page.locator(".project-row")).toHaveCount(7);
-  await expect(page.locator(".current-work")).toHaveAttribute("open", "");
+  await expect(page.locator(".current-work")).not.toHaveAttribute("open");
   await page.locator("footer").scrollIntoViewIfNeeded();
   await expect
     .poll(() =>
@@ -76,6 +76,7 @@ test("motion transitions cover every property their states change", async ({ pag
       externalArrow: read(".external-arrow"),
       portrait: read(".portrait-visual"),
       workChevron: read(".work-chevron"),
+      workDetail: read(".work-detail"),
       clipVideo: read(".clip-trigger video"),
       clipExpand: read(".clip-expand"),
       projectRow: read(".project-row"),
@@ -105,6 +106,11 @@ test("motion transitions cover every property their states change", async ({ pag
   expect(transitions.portrait.duration).toBe("0.15s");
   expect(transitions.workChevron.property).toBe("transform, translate, scale, rotate");
   expect(transitions.workChevron.duration).toBe("0.2s");
+  expect(transitions.workDetail).toEqual({
+    property: "grid-template-rows, opacity, visibility",
+    duration: "0.22s",
+    timing: "cubic-bezier(0.19, 1, 0.22, 1)",
+  });
   expect(transitions.clipVideo.property).toBe("transform, translate, scale, rotate");
   expect(transitions.clipVideo.duration).toBe("0.35s");
   for (const transition of [
@@ -211,10 +217,11 @@ test("keyboard controls expand work and move pixels without shifting the page", 
   const summary = page.locator("summary");
   await summary.focus();
   await page.keyboard.press("Enter");
-  await expect(page.locator(".current-work")).not.toHaveAttribute("open");
-  await page.keyboard.press("Enter");
   await expect(page.locator(".current-work")).toHaveAttribute("open", "");
+  await page.keyboard.press("Enter");
+  await expect(page.locator(".current-work")).not.toHaveAttribute("open");
   const checkbox = page.getByRole("checkbox", { name: "Move pixels" });
+  await expect(checkbox).toBeVisible();
   await checkbox.scrollIntoViewIfNeeded();
   await checkbox.focus();
   const position = await page.evaluate(() => scrollY);
@@ -224,6 +231,16 @@ test("keyboard controls expand work and move pixels without shifting the page", 
   expect(Math.abs((await page.evaluate(() => scrollY)) - position)).toBeLessThan(2);
   await page.keyboard.press("Space");
   await expect(checkbox).not.toBeChecked();
+});
+
+test("work disclosure respects reduced motion", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.goto("/");
+  const workDetail = page.locator(".work-detail");
+  await expect(workDetail).toHaveCSS("transition-property", "none");
+  await page.locator("summary").click();
+  await expect(workDetail).toBeVisible();
+  await expect(page.locator(".current-work")).toHaveAttribute("open", "");
 });
 
 test("reduced motion pauses clips and portrait supports taps", async ({ page }) => {
