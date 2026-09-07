@@ -35,6 +35,26 @@ test("content, media, and metadata load without runtime errors", async ({ page, 
   expect(errors).toEqual([]);
 });
 
+test("video header spacing matches the responsive Work section spacing", async ({ page }) => {
+  await page.goto("/");
+  const margins = await page.evaluate(() => {
+    const marginBottom = (selector: string) => {
+      const element = document.querySelector(selector);
+      if (!element) throw new Error(`Missing ${selector}`);
+      return getComputedStyle(element).marginBottom;
+    };
+
+    return {
+      work: marginBottom(".work-section > .section-header"),
+      videos: marginBottom(".craft-section > .section-header"),
+      width: innerWidth,
+    };
+  });
+
+  expect(margins.videos).toBe(margins.work);
+  expect(margins.videos).toBe(margins.width <= 600 ? "15px" : "20px");
+});
+
 test("motion transitions cover every property their states change", async ({ page }) => {
   await page.goto("/");
 
