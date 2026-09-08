@@ -72,7 +72,7 @@ test("Cuelume sounds cover the portfolio interactions", async ({ page, isMobile 
 
   const backToTop = page.getByRole("link", { name: "Back to top", exact: true });
   await expect(backToTop).not.toHaveAttribute("data-cuelume-hover");
-  await expect(backToTop).toHaveAttribute("data-cuelume-toggle", "page");
+  await expect(backToTop).toHaveAttribute("data-cuelume-toggle", "pulse");
   await expectSound(() => backToTop.click());
 
   const themeToggle = page.getByRole("button", { name: "Toggle color theme" });

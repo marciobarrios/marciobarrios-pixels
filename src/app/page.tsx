@@ -46,7 +46,7 @@ export default function Home() {
               <div>
                 <h1
                   id="intro-title"
-                  className="text-[24px] leading-[1.45] font-[550] tracking-[-1.15px]"
+                  className="-mt-1 text-[24px] leading-[1.45] font-[550] tracking-[-1.15px]"
                 >
                   Marcio Barrios
                 </h1>

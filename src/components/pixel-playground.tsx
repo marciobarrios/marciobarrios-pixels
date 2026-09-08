@@ -50,7 +50,7 @@ export function PixelPlayground() {
       </div>
       <div className="pixel-controls">
         <label
-          className="pixel-label flex min-h-11 w-fit cursor-pointer items-center gap-[9px] text-[11px]"
+          className="pixel-label mt-px flex min-h-11 w-fit cursor-pointer items-center gap-[9px] text-[11px]"
           htmlFor="move-pixels"
         >
           <Checkbox
