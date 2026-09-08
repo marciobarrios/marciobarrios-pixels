@@ -43,6 +43,7 @@ export function ThemeToggle() {
             className="theme-toggle size-11 rounded-full text-(--secondary)"
             onClick={toggle}
             aria-label="Toggle color theme"
+            data-cuelume-toggle="toggle"
           />
         }
       >

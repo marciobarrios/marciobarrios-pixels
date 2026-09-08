@@ -1,4 +1,5 @@
 "use client";
+import { play } from "cuelume";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
@@ -125,14 +126,16 @@ export function PixelPortrait() {
       shaders.forEach((s) => gl.deleteShader(s));
     };
   }, []);
-  function requestDetail(detailed: boolean) {
+  function requestDetail(detailed: boolean, audible = false) {
+    const changed = requested.current !== detailed;
     requested.current = detailed;
     animateRef.current(detailed);
+    if (audible && changed) play(detailed ? "ready" : "droplet");
   }
   function toggle() {
     pinned.current = !pinned.current;
     setRevealed(pinned.current);
-    requestDetail(pinned.current);
+    requestDetail(pinned.current, true);
   }
   return (
     <button
@@ -142,13 +145,13 @@ export function PixelPortrait() {
       aria-label={revealed ? "Pixelate portrait" : "Reveal portrait"}
       aria-pressed={revealed}
       onPointerEnter={(e) => {
-        if (e.pointerType === "mouse") requestDetail(true);
+        if (e.pointerType === "mouse") requestDetail(true, true);
       }}
-      onPointerLeave={() => requestDetail(pinned.current)}
+      onPointerLeave={() => requestDetail(pinned.current, true)}
       onFocus={(e) => {
-        if (e.currentTarget.matches(":focus-visible")) requestDetail(true);
+        if (e.currentTarget.matches(":focus-visible")) requestDetail(true, true);
       }}
-      onBlur={() => requestDetail(pinned.current)}
+      onBlur={() => requestDetail(pinned.current, true)}
     >
       <span className="portrait-visual pointer-events-none relative block size-full -rotate-3 rounded-[11px] bg-muted shadow-[0_0_0_1px_#00000009,0_3px_5px_#202c2110] transition-transform duration-150 ease-[cubic-bezier(0.19,1,0.22,1)] motion-safe:pointer-fine:group-hover/portrait:-translate-y-0.5 motion-safe:pointer-fine:group-hover/portrait:rotate-0 motion-reduce:transition-none">
         <Image

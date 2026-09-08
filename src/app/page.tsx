@@ -5,6 +5,7 @@ import { ExternalLink, Favicon } from "@/components/external-link";
 import { WorkClips } from "@/components/work-clips";
 import { PixelPlayground } from "@/components/pixel-playground";
 import { RotatingTagline } from "@/components/rotating-tagline";
+import { SoundDetails } from "@/components/sound-effects";
 import { projects } from "@/lib/content";
 
 export default function Home() {
@@ -13,6 +14,7 @@ export default function Home() {
       <a
         className="skip-link fixed top-2.5 left-2.5 z-60 -translate-y-[150%] bg-popover px-4 py-2.5 focus:translate-y-0"
         href="#main"
+        data-cuelume-hover="tick"
       >
         Skip to content
       </a>
@@ -25,6 +27,7 @@ export default function Home() {
             href="#top"
             className="wordmark inline-flex min-h-11 items-center text-[19px] font-semibold tracking-[-2px] [&>span]:text-primary"
             aria-label="Marcio Barrios, back to top"
+            data-cuelume-hover="tick"
           >
             mb<span aria-hidden="true">.</span>
           </a>
@@ -43,7 +46,7 @@ export default function Home() {
               <div>
                 <h1
                   id="intro-title"
-                  className="text-[24px] leading-[1.45] font-[550] tracking-[-1.15px]"
+                  className="-mt-1 text-[24px] leading-[1.45] font-[550] tracking-[-1.15px]"
                 >
                   Marcio Barrios
                 </h1>
@@ -97,7 +100,7 @@ export default function Home() {
               </h2>
               <span className="text-[10px] text-muted-foreground">A few chapters</span>
             </div>
-            <details className="current-work group/current rounded-[10px] border border-border bg-[color-mix(in_srgb,var(--muted)_48%,transparent)] px-4 max-[600px]:px-3">
+            <SoundDetails className="current-work group/current rounded-[10px] border border-border bg-[color-mix(in_srgb,var(--muted)_48%,transparent)] px-4 max-[600px]:px-3">
               <summary className="work-row flex min-h-[58px] list-none items-center gap-3.5 text-[12px] max-[600px]:gap-2.5 [&::-webkit-details-marker]:hidden">
                 <Favicon icon="mito.svg" />
                 <div className="work-name flex-1 font-medium tracking-[-0.2px]">
@@ -129,13 +132,14 @@ export default function Home() {
                   </ExternalLink>
                 </div>
               </div>
-            </details>
+            </SoundDetails>
             <div className="past-work px-[17px] pt-1 max-[600px]:px-[13px]">
               <a
                 className="work-row group flex min-h-[49px] items-center gap-3.5 text-[12px] [&>svg]:text-muted-foreground pointer-fine:hover:[&_.work-name]:text-primary max-[600px]:gap-2.5 max-[360px]:gap-2"
                 href="https://www.sketch.com/"
                 target="_blank"
                 rel="noopener noreferrer"
+                data-cuelume-hover="tick"
               >
                 <Favicon icon="sketch.ico" />
                 <span className="work-name flex-1 font-medium tracking-[-0.2px]">Sketch</span>
@@ -150,6 +154,7 @@ export default function Home() {
                 href="https://www.xing.com/"
                 target="_blank"
                 rel="noopener noreferrer"
+                data-cuelume-hover="tick"
               >
                 <Favicon icon="xing.svg" />
                 <span className="work-name flex-1 font-medium tracking-[-0.2px]">Xing</span>
@@ -198,6 +203,7 @@ export default function Home() {
                   href={project.href}
                   target="_blank"
                   rel="noopener noreferrer"
+                  data-cuelume-hover="sparkle"
                   className="project-row group -mx-[9px] flex items-start gap-[15px] rounded-[8px] px-[9px] py-[15px] transition-[background-color] duration-180 ease-[ease] pointer-fine:hover:bg-muted max-[600px]:gap-3 max-[600px]:py-3.5"
                 >
                   <Favicon icon={project.icon} />
@@ -236,7 +242,7 @@ export default function Home() {
         </main>
         <footer className="footer flex items-center justify-between border-t border-border py-4 pb-6 text-[10px] text-muted-foreground [&>a]:inline-flex [&>a]:min-h-11 [&>a]:items-center [&>a]:gap-[7px]">
           <span>© 2026 Marcio Barrios</span>
-          <a className="pointer-fine:hover:text-primary" href="#top">
+          <a className="pointer-fine:hover:text-primary" href="#top" data-cuelume-toggle="pulse">
             Back to top
             <ArrowUp size={12} aria-hidden="true" />
           </a>
