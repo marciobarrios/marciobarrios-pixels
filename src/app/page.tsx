@@ -242,12 +242,7 @@ export default function Home() {
         </main>
         <footer className="footer flex items-center justify-between border-t border-border py-4 pb-6 text-[10px] text-muted-foreground [&>a]:inline-flex [&>a]:min-h-11 [&>a]:items-center [&>a]:gap-[7px]">
           <span>© 2026 Marcio Barrios</span>
-          <a
-            className="pointer-fine:hover:text-primary"
-            href="#top"
-            data-cuelume-hover="tick"
-            data-cuelume-toggle="page"
-          >
+          <a className="pointer-fine:hover:text-primary" href="#top" data-cuelume-toggle="page">
             Back to top
             <ArrowUp size={12} aria-hidden="true" />
           </a>
