@@ -130,7 +130,7 @@ export function PixelPortrait() {
     const changed = requested.current !== detailed;
     requested.current = detailed;
     animateRef.current(detailed);
-    if (audible && changed) play(detailed ? "scan" : "droplet");
+    if (audible && changed) play(detailed ? "ready" : "droplet");
   }
   function toggle() {
     pinned.current = !pinned.current;
