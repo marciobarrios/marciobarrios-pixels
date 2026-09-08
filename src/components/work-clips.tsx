@@ -1,4 +1,5 @@
 "use client";
+import { play } from "cuelume";
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { Maximize2, Play, Pause } from "lucide-react";
 import {
@@ -15,6 +16,10 @@ function Clip({ clip, moving }: { clip: (typeof clips)[number]; moving: boolean 
   const videoRef = useRef<HTMLVideoElement>(null);
   const [open, setOpen] = useState(false);
   const [failed, setFailed] = useState(false);
+  function handleOpenChange(nextOpen: boolean) {
+    if (nextOpen !== open) play(nextOpen ? "bloom" : "droplet");
+    setOpen(nextOpen);
+  }
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
@@ -39,7 +44,7 @@ function Clip({ clip, moving }: { clip: (typeof clips)[number]; moving: boolean 
     };
   }, [moving, open]);
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog open={open} onOpenChange={handleOpenChange}>
       <div className="clip">
         <DialogTrigger
           className="clip-trigger group relative block aspect-[1.2] w-full overflow-hidden rounded-[9px] bg-[#131313] shadow-[0_0_0_1px_#0000000c,0_3px_6px_#00000006] max-[600px]:aspect-[0.9] max-[600px]:rounded-[7px]"
@@ -79,7 +84,11 @@ function Clip({ clip, moving }: { clip: (typeof clips)[number]; moving: boolean 
         {failed ? (
           <p>
             Preview unavailable.{" "}
-            <a className="text-link underline underline-offset-4" href={`/media/${clip.id}.mp4`}>
+            <a
+              className="text-link underline underline-offset-4"
+              href={`/media/${clip.id}.mp4`}
+              data-cuelume-hover="tick"
+            >
               Open the video
             </a>
             .
@@ -145,6 +154,7 @@ export function WorkClips() {
           onClick={() => setPreference(!moving)}
           aria-label={moving ? "Pause previews" : "Play previews"}
           aria-pressed={moving}
+          data-cuelume-toggle="toggle"
         >
           <span className="motion-toggle-content inline-flex items-center gap-1.5">
             {moving ? <Pause size={11} /> : <Play size={11} />}

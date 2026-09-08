@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { GeistMono } from "geist/font/mono";
+import { SoundEffects } from "@/components/sound-effects";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import "./globals.css";
 
@@ -36,7 +37,10 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body className="m-0 bg-background font-sans text-[13px] text-foreground antialiased selection:bg-accent selection:text-accent-foreground before:pointer-events-none before:fixed before:inset-0 before:z-40 before:bg-(image:--noise) before:opacity-[0.08] before:content-[''] dark:before:opacity-[0.01]">
-        <TooltipProvider>{children}</TooltipProvider>
+        <TooltipProvider>
+          <SoundEffects />
+          {children}
+        </TooltipProvider>
       </body>
     </html>
   );

@@ -1,4 +1,5 @@
 "use client";
+import { play } from "cuelume";
 import { useState, type CSSProperties } from "react";
 import { Checkbox } from "@/components/ui/checkbox";
 
@@ -55,7 +56,11 @@ export function PixelPlayground() {
           <Checkbox
             id="move-pixels"
             checked={moved}
-            onCheckedChange={(checked) => setMoved(Boolean(checked))}
+            onCheckedChange={(checked) => {
+              const nextMoved = Boolean(checked);
+              setMoved(nextMoved);
+              play(nextMoved ? "success" : "droplet");
+            }}
           />
           <span>Move pixels</span>
         </label>

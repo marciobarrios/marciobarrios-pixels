@@ -64,6 +64,7 @@ export function ExternalLink({
       href={href}
       target="_blank"
       rel="noopener noreferrer"
+      data-cuelume-hover="tick"
     >
       {icon ? <Favicon icon={icon} size="inline" /> : null}
       <span className="underline decoration-border underline-offset-4 transition-[text-decoration-color] duration-160 ease-[ease] pointer-fine:group-hover:decoration-primary">
