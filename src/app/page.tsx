@@ -165,12 +165,7 @@ export default function Home() {
                 <span className="sr-only"> (opens in a new tab)</span>
               </a>
               <div className="work-row flex min-h-[49px] items-center gap-3.5 text-[12px] max-[600px]:gap-2.5 max-[360px]:gap-2">
-                <span
-                  className="tuenti-icon flex size-[22px] items-center justify-center pr-1 text-[19px] font-semibold tracking-[-3px] text-[#1788be]"
-                  aria-hidden="true"
-                >
-                  :)
-                </span>
+                <Favicon icon="tuenti.svg" />
                 <span className="work-name flex-1 font-medium tracking-[-0.2px]">Tuenti</span>
                 <span className="work-years whitespace-nowrap text-[10px] font-normal text-muted-foreground">
                   2011 — 2013
