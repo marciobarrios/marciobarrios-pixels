@@ -143,13 +143,85 @@ test("portrait remembers a keyboard reveal requested before the texture is ready
     const portrait = page.locator(".portrait");
     await portrait.focus();
     await expect(portrait).toBeFocused();
+    await expect(portrait).toHaveAttribute("aria-pressed", "false");
+    await expect(page.locator(".portrait-hint")).toHaveCSS("opacity", "1");
+    await page.keyboard.press("Enter");
     release();
     await expect(page.locator(".portrait canvas")).toHaveCSS("opacity", "1");
     await page.keyboard.press("Tab");
     await expect(page.locator(".portrait canvas")).toHaveCSS("opacity", "0");
+    await portrait.focus();
+    await expect(page.locator(".portrait canvas")).toHaveCSS("opacity", "1");
+    await expect(page.locator(".portrait-hint")).toHaveCSS("opacity", "0");
+    await page.keyboard.press("Space");
+    await expect(page.locator(".portrait canvas")).toHaveCSS("opacity", "0");
   } finally {
     release();
   }
+});
+
+test("portrait unlocks hover reveals only after its first click", async ({ page, isMobile }) => {
+  test.skip(isMobile, "Fine-pointer hover is a desktop interaction.");
+  await page.goto("/");
+  const portrait = page.locator(".portrait");
+  const canvas = portrait.locator("canvas");
+  const hint = page.locator(".portrait-hint");
+  await expect(canvas).toHaveAttribute("data-ready", "true");
+  await expect(hint).toHaveCSS("opacity", "0");
+  const box = await portrait.boundingBox();
+
+  // A different user gesture can enable audio, but it must not unlock the portrait.
+  await page.getByText("Barcelona, ES").click();
+  await portrait.hover();
+  await expect(hint).toHaveCSS("opacity", "1");
+  await expect(portrait.locator(".portrait-visual")).toHaveCSS("rotate", /^(none|0deg)$/);
+  await expect(canvas).toHaveCSS("opacity", "0");
+  await expect(portrait).toHaveAttribute("aria-pressed", "false");
+  expect(await portrait.boundingBox()).toEqual(box);
+
+  await portrait.click();
+  await expect(canvas).toHaveCSS("opacity", "1");
+  await expect(hint).toHaveCSS("opacity", "0");
+  await expect(portrait).toHaveAttribute("aria-pressed", "true");
+  await page.mouse.move(0, 0);
+  await expect(canvas).toHaveCSS("opacity", "0");
+  await portrait.hover();
+  await expect(canvas).toHaveCSS("opacity", "1");
+  await expect(hint).toHaveCSS("opacity", "0");
+  expect(await portrait.boundingBox()).toEqual(box);
+
+  await page.mouse.move(0, 0);
+  await page.reload();
+  await expect(canvas).toHaveAttribute("data-ready", "true");
+  await portrait.hover();
+  await expect(hint).toHaveCSS("opacity", "1");
+  await expect(canvas).toHaveCSS("opacity", "0");
+});
+
+test("touch portrait shows a one-time hint and stays revealed after a tap", async ({
+  page,
+  isMobile,
+}) => {
+  test.skip(!isMobile, "Touch interaction uses the mobile browser.");
+  await page.goto("/");
+  const portrait = page.locator(".portrait");
+  const canvas = portrait.locator("canvas");
+  const hint = portrait.locator(".portrait-hint");
+  await expect(canvas).toHaveAttribute("data-ready", "true");
+  await expect(hint).toHaveCSS("opacity", "1");
+  await expect(portrait.locator(".portrait-hint-tap")).toBeVisible();
+  await expect(portrait.locator(".portrait-hint-click")).toBeHidden();
+  const box = await portrait.boundingBox();
+  await portrait.tap();
+  await expect(canvas).toHaveCSS("opacity", "1");
+  await expect(hint).toHaveCSS("opacity", "0");
+  await expect(portrait).toHaveAttribute("aria-pressed", "true");
+  expect(await portrait.boundingBox()).toEqual(box);
+  await portrait.tap();
+  await expect(canvas).toHaveCSS("opacity", "0");
+  await expect(hint).toHaveCSS("opacity", "0");
+  await portrait.tap();
+  await expect(canvas).toHaveCSS("opacity", "1");
 });
 
 test("portrait hover keeps every edge of the hit target stationary", async ({ page, isMobile }) => {
