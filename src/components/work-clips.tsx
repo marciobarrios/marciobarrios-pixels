@@ -61,7 +61,7 @@ function Clip({ clip, moving }: { clip: (typeof clips)[number]; moving: boolean 
           </span>
         </DialogTrigger>
         <div className="clip-caption mt-3 leading-[1.55] max-[600px]:mt-2">
-          <p className="text-[11px] leading-[inherit] font-medium tracking-[-0.25px] max-[600px]:text-[10px] max-[600px]:leading-[1.6]">
+          <p className="text-[11px] leading-[inherit] font-medium tracking-[-0.25px] max-[600px]:leading-[1.6]">
             {clip.title}
           </p>
           <span className="text-[10px] text-muted-foreground max-[600px]:mt-[3px] max-[600px]:block">

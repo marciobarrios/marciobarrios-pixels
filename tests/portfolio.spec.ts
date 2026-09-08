@@ -55,6 +55,44 @@ test("video header spacing matches the responsive Work section spacing", async (
   expect(margins.videos).toBe(margins.width <= 600 ? "15px" : "20px");
 });
 
+test("the type scale stays consistent across breakpoints", async ({ page }) => {
+  await page.goto("/");
+
+  const fontSizes = await page.evaluate(() => {
+    const fontSize = (selector: string) => {
+      const element = document.querySelector(selector);
+      if (!element) throw new Error(`Missing ${selector}`);
+      return getComputedStyle(element).fontSize;
+    };
+
+    return {
+      name: fontSize("#intro-title"),
+      role: fontSize(".role"),
+      tagline: fontSize(".tagline"),
+      intro: fontSize(".intro-copy"),
+      social: fontSize(".social-links"),
+      workDetail: fontSize(".work-detail > div"),
+      clipTitle: fontSize(".clip-caption > p"),
+      projectTitle: fontSize(".project-row h3"),
+      projectDescription: fontSize(".project-row p"),
+      closing: fontSize(".closing"),
+    };
+  });
+
+  expect(fontSizes).toEqual({
+    name: "24px",
+    role: "12px",
+    tagline: "12px",
+    intro: "14px",
+    social: "11px",
+    workDetail: "12px",
+    clipTitle: "11px",
+    projectTitle: "13px",
+    projectDescription: "12px",
+    closing: "12px",
+  });
+});
+
 test("motion transitions cover every property their states change", async ({ page }) => {
   await page.goto("/");
 
