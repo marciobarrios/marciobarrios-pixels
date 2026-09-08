@@ -1,7 +1,15 @@
 "use client";
 import { play } from "cuelume";
+import localFont from "next/font/local";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+
+const handwriting = localFont({
+  src: "./fonts/caveat-latin.woff2",
+  weight: "400",
+  display: "swap",
+  preload: false,
+});
 
 const vertex = `attribute vec2 a_position; varying vec2 v_uv; void main(){v_uv=(a_position+1.0)*0.5;gl_Position=vec4(a_position,0.0,1.0);}`;
 const fragment = `precision mediump float; uniform sampler2D u_image; uniform float u_grid; varying vec2 v_uv;
@@ -10,8 +18,9 @@ void main(){vec2 uv=(floor(v_uv*u_grid)+0.5)/u_grid; vec4 color=texture2D(u_imag
 export function PixelPortrait() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animateRef = useRef<(detailed: boolean) => void>(() => {});
-  const pinned = useRef(false);
   const requested = useRef(false);
+  // Audio needs a fresh user gesture after a reload, so this stays local to the page.
+  const [unlocked, setUnlocked] = useState(false);
   const [revealed, setRevealed] = useState(false);
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -129,30 +138,57 @@ export function PixelPortrait() {
   function requestDetail(detailed: boolean, audible = false) {
     const changed = requested.current !== detailed;
     requested.current = detailed;
+    setRevealed(detailed);
     animateRef.current(detailed);
     if (audible && changed) play(detailed ? "ready" : "droplet");
   }
   function toggle() {
-    pinned.current = !pinned.current;
-    setRevealed(pinned.current);
-    requestDetail(pinned.current, true);
+    setUnlocked(true);
+    requestDetail(!requested.current, true);
   }
   return (
     <button
-      className="portrait group/portrait relative size-[88px] shrink-0 max-[600px]:size-[76px] max-[360px]:size-[66px]"
+      className="portrait group/portrait relative size-[88px] shrink-0 touch-manipulation max-[600px]:size-[76px] max-[360px]:size-[66px]"
       type="button"
       onClick={toggle}
       aria-label={revealed ? "Pixelate portrait" : "Reveal portrait"}
       aria-pressed={revealed}
+      data-unlocked={unlocked}
       onPointerEnter={(e) => {
-        if (e.pointerType === "mouse") requestDetail(true, true);
+        if (e.pointerType === "mouse" && unlocked) requestDetail(true, true);
       }}
-      onPointerLeave={() => requestDetail(pinned.current, true)}
+      onPointerLeave={(e) => {
+        if (e.pointerType === "mouse") requestDetail(false, true);
+      }}
       onFocus={(e) => {
-        if (e.currentTarget.matches(":focus-visible")) requestDetail(true, true);
+        if (unlocked && e.currentTarget.matches(":focus-visible")) requestDetail(true, true);
       }}
-      onBlur={() => requestDetail(pinned.current, true)}
+      onBlur={() => requestDetail(false, true)}
     >
+      <span
+        className={`portrait-hint ${handwriting.className} pointer-events-none absolute -top-[54px] left-[calc(50%-8px)] w-[132px] text-left text-[21px] leading-none text-muted-foreground opacity-0 transition-opacity duration-150 ease-[ease] group-data-[unlocked=false]/portrait:group-focus-visible/portrait:opacity-100 pointer-fine:group-data-[unlocked=false]/portrait:group-hover/portrait:opacity-100 pointer-coarse:group-data-[unlocked=false]/portrait:opacity-100 [@media(hover:none)]:group-data-[unlocked=false]/portrait:opacity-100`}
+        aria-hidden="true"
+      >
+        <span className="block translate-x-2 translate-y-2.5 -rotate-6 pl-5">
+          <span className="portrait-hint-click pointer-coarse:hidden [@media(hover:none)]:hidden">
+            click to reveal
+          </span>
+          <span className="portrait-hint-tap hidden pointer-coarse:inline [@media(hover:none)]:inline">
+            tap to reveal
+          </span>
+        </span>
+        <svg
+          className="absolute top-[25px] -left-0.5 h-[22px] w-[32px]"
+          viewBox="0 0 38 28"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.3"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="M34 2C19 1 8 9 12 24M5 18l7 7 6-8" />
+        </svg>
+      </span>
       <span className="portrait-visual pointer-events-none relative block size-full -rotate-3 rounded-[11px] bg-muted shadow-[0_0_0_1px_#00000009,0_3px_5px_#202c2110] transition-transform duration-150 ease-[cubic-bezier(0.19,1,0.22,1)] motion-safe:pointer-fine:group-hover/portrait:-translate-y-0.5 motion-safe:pointer-fine:group-hover/portrait:rotate-0 motion-reduce:transition-none">
         <Image
           className="size-full rounded-[inherit] object-cover"

@@ -6,9 +6,7 @@ declare global {
   }
 }
 
-test("Cuelume sounds cover the portfolio interactions", async ({ page, isMobile }) => {
-  test.skip(isMobile, "Hover sound coverage requires a fine pointer.");
-
+test.beforeEach(async ({ page }) => {
   await page.addInitScript(() => {
     window.cuelumeSourceStarts = 0;
 
@@ -23,9 +21,24 @@ test("Cuelume sounds cover the portfolio interactions", async ({ page, isMobile 
     trackStarts(OscillatorNode.prototype);
     trackStarts(AudioBufferSourceNode.prototype);
   });
+});
+
+test("the first portrait tap activates sound on mobile", async ({ page, isMobile }) => {
+  test.skip(!isMobile, "Touch audio activation uses the mobile browser.");
+  await page.goto("/");
+  const portrait = page.locator(".portrait");
+  await expect(portrait.locator("canvas")).toHaveAttribute("data-ready", "true");
+  expect(await page.evaluate(() => window.cuelumeSourceStarts)).toBe(0);
+  await portrait.tap();
+  await expect(portrait).toHaveAttribute("aria-pressed", "true");
+  await expect.poll(() => page.evaluate(() => window.cuelumeSourceStarts)).toBeGreaterThan(0);
+});
+
+test("Cuelume sounds cover the portfolio interactions", async ({ page, isMobile }) => {
+  test.skip(isMobile, "Hover sound coverage requires a fine pointer.");
 
   await page.goto("/");
-  await page.getByText("Barcelona, ES").click();
+  await expect(page.locator(".portrait canvas")).toHaveAttribute("data-ready", "true");
 
   async function expectSound(action: () => Promise<unknown>) {
     const starts = await page.evaluate(() => window.cuelumeSourceStarts);
@@ -35,7 +48,13 @@ test("Cuelume sounds cover the portfolio interactions", async ({ page, isMobile 
       .toBeGreaterThan(starts);
   }
 
-  const portrait = page.getByRole("button", { name: "Reveal portrait", exact: true });
+  const portrait = page.locator(".portrait");
+  await portrait.hover();
+  await expect(page.locator(".portrait-hint")).toHaveCSS("opacity", "1");
+  await expect(page.locator(".portrait canvas")).toHaveCSS("opacity", "0");
+  expect(await page.evaluate(() => window.cuelumeSourceStarts)).toBe(0);
+  await expectSound(() => portrait.click());
+  await expectSound(() => page.mouse.move(0, 0));
   await expectSound(() => portrait.hover());
   await expectSound(() => page.mouse.move(0, 0));
 
