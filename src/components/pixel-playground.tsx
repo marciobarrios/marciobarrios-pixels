@@ -50,7 +50,7 @@ export function PixelPlayground() {
       </div>
       <div className="pixel-controls">
         <label
-          className="pixel-label mt-px flex min-h-11 w-fit cursor-pointer items-center gap-[9px] text-[11px]"
+          className="pixel-label flex min-h-11 w-fit cursor-pointer items-center gap-[9px] text-[11px]"
           htmlFor="move-pixels"
         >
           <Checkbox
@@ -62,7 +62,7 @@ export function PixelPlayground() {
               play(nextMoved ? "success" : "droplet");
             }}
           />
-          <span>Move pixels</span>
+          <span className="mt-px">Move pixels</span>
         </label>
         <p
           className="min-h-[31px] text-[10px] leading-[1.7] text-muted-foreground"
