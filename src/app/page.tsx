@@ -43,17 +43,15 @@ export default function Home() {
               <div>
                 <h1
                   id="intro-title"
-                  className="text-[24px] leading-[1.45] font-[550] tracking-[-1.15px] max-[600px]:text-[21px] max-[600px]:tracking-[-1px] max-[360px]:text-[19px]"
+                  className="text-[24px] leading-[1.45] font-[550] tracking-[-1.15px]"
                 >
                   Marcio Barrios
                 </h1>
-                <p className="role mt-px text-[12px] text-(--secondary) max-[600px]:text-[11px]">
-                  Design Engineer
-                </p>
+                <p className="role mt-px text-[12px] text-(--secondary)">Design Engineer</p>
                 <RotatingTagline />
               </div>
             </div>
-            <div className="intro-copy reveal mt-[34px] text-[14px] leading-[1.95] tracking-[-0.25px] text-(--secondary) motion-safe:animate-appear motion-safe:[animation-delay:80ms] max-[600px]:mt-[29px] max-[600px]:text-[13px] [&>p+p]:mt-[18px]">
+            <div className="intro-copy reveal mt-[34px] text-[14px] leading-[1.95] tracking-[-0.25px] text-(--secondary) motion-safe:animate-appear motion-safe:[animation-delay:80ms] max-[600px]:mt-[29px] [&>p+p]:mt-[18px]">
               <p>
                 I turn ideas into interfaces that feel good to use.
                 <br className="desktop-break max-[600px]:hidden" /> Somewhere between design and
@@ -76,7 +74,7 @@ export default function Home() {
               </p>
               <p>I like making things. And going places.</p>
             </div>
-            <div className="social-links reveal mt-[18px] flex flex-wrap gap-6 text-[11px] motion-safe:animate-appear motion-safe:[animation-delay:150ms] max-[600px]:mt-[15px] max-[600px]:gap-[21px] max-[600px]:text-[10px] max-[360px]:gap-4 [&>a]:min-h-11 [&>a]:items-center">
+            <div className="social-links reveal mt-[18px] flex flex-wrap gap-6 text-[11px] motion-safe:animate-appear motion-safe:[animation-delay:150ms] max-[600px]:mt-[15px] max-[600px]:gap-[21px] max-[360px]:gap-4 [&>a]:min-h-11 [&>a]:items-center">
               <ExternalLink href="https://github.com/marciobarrios" icon="github.ico">
                 GitHub
               </ExternalLink>
@@ -118,7 +116,7 @@ export default function Home() {
                 />
               </summary>
               <div className="work-detail invisible grid grid-rows-[0fr] overflow-hidden opacity-0 pointer-events-none transition-[grid-template-rows,opacity,visibility] duration-[220ms] ease-[cubic-bezier(0.19,1,0.22,1)] motion-reduce:transition-none group-open/current:pointer-events-auto group-open/current:visible group-open/current:grid-rows-[1fr] group-open/current:opacity-100">
-                <div className="min-h-0 overflow-hidden px-[15px] pt-0.5 pb-[18px] pl-9 text-[12px] leading-[1.9] text-(--secondary) max-[600px]:pr-1 max-[600px]:pl-8 max-[600px]:text-[11px]">
+                <div className="min-h-0 overflow-hidden px-[15px] pt-0.5 pb-[18px] pl-9 text-[12px] leading-[1.9] text-(--secondary) max-[600px]:pr-1 max-[600px]:pl-8">
                   <p>
                     As a product engineer at MITO, I turn product ideas and wireframes into fully
                     realized features for an infinite canvas tool used in the filmmaking workflow.
@@ -204,13 +202,13 @@ export default function Home() {
                 >
                   <Favicon icon={project.icon} />
                   <div className="project-copy min-w-0 flex-1">
-                    <h3 className="text-[13px] leading-[22px] font-medium tracking-[-0.3px] max-[600px]:text-[12px]">
+                    <h3 className="text-[13px] leading-[22px] font-medium tracking-[-0.3px]">
                       {project.name}
                       <span className="project-category ml-3 inline-block -translate-x-1 text-[10px] font-normal text-muted-foreground opacity-0 transition-[translate,opacity] duration-180 ease-[ease] group-focus-visible:translate-x-0 group-focus-visible:opacity-100 pointer-fine:group-hover:translate-x-0 pointer-fine:group-hover:opacity-100 max-[600px]:hidden">
                         {project.category}
                       </span>
                     </h3>
-                    <p className="mt-[3px] text-[12px] leading-[1.8] tracking-[-0.15px] text-(--secondary) max-[600px]:text-[11px]">
+                    <p className="mt-[3px] text-[12px] leading-[1.8] tracking-[-0.15px] text-(--secondary)">
                       {project.description}
                     </p>
                   </div>
@@ -226,7 +224,7 @@ export default function Home() {
           </section>
 
           <section
-            className="closing mt-[52px] border-t border-border pt-[33px] text-[12px] leading-[1.9] max-[600px]:mt-[39px] max-[600px]:pt-[27px] max-[600px]:text-[11px]"
+            className="closing mt-[52px] border-t border-border pt-[33px] text-[12px] leading-[1.9] max-[600px]:mt-[39px] max-[600px]:pt-[27px]"
             aria-label="One last detail"
           >
             <p>Good things happen in the details.</p>

@@ -66,7 +66,7 @@ export function RotatingTagline() {
 
   return (
     <p
-      className="tagline mt-2.5 flex w-fit items-center text-[12px] text-primary max-[600px]:mt-2 max-[600px]:text-[11px] [&[data-animated=true]_[data-state=active]_.tagline-word]:animate-tagline-in [&[data-animated=true]_[data-state=exiting]_.tagline-word]:animate-tagline-out"
+      className="tagline mt-2.5 flex w-fit items-center text-[12px] text-primary max-[600px]:mt-2 [&[data-animated=true]_[data-state=active]_.tagline-word]:animate-tagline-in [&[data-animated=true]_[data-state=exiting]_.tagline-word]:animate-tagline-out"
       ref={taglineRef}
       data-animated={step > 0 && moving}
     >
