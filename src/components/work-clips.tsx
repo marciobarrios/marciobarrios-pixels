@@ -69,7 +69,7 @@ function Clip({ clip, moving }: { clip: (typeof clips)[number]; moving: boolean 
           <p className="text-[11px] leading-[inherit] font-medium tracking-[-0.25px] max-[600px]:leading-[1.6]">
             {clip.title}
           </p>
-          <span className="text-[10px] text-muted-foreground max-[600px]:mt-[3px] max-[600px]:block">
+          <span className="text-[11px] text-muted-foreground max-[600px]:mt-[3px] max-[600px]:block">
             {clip.subtitle}
           </span>
         </div>
@@ -106,7 +106,7 @@ function Clip({ clip, moving }: { clip: (typeof clips)[number]; moving: boolean 
             onError={() => setFailed(true)}
           />
         )}
-        <p className="dialog-credit text-[10px] text-muted-foreground">
+        <p className="dialog-credit text-[11px] text-muted-foreground">
           Product engineering at MITO AI · 2026
         </p>
       </DialogContent>
@@ -150,7 +150,7 @@ export function WorkClips() {
           </p>
         </div>
         <button
-          className="motion-toggle inline-flex min-h-11 min-w-[55px] items-end justify-end text-[10px] text-muted-foreground"
+          className="motion-toggle inline-flex min-h-11 min-w-[55px] items-end justify-end text-[11px] text-muted-foreground"
           onClick={() => setPreference(!moving)}
           aria-label={moving ? "Pause previews" : "Play previews"}
           aria-pressed={moving}
