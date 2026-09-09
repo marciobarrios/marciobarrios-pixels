@@ -36,7 +36,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
-      <body className="m-0 bg-background font-sans text-[13px] text-foreground antialiased selection:bg-accent selection:text-accent-foreground before:pointer-events-none before:fixed before:inset-0 before:z-40 before:bg-(image:--noise) before:opacity-[0.08] before:content-[''] dark:before:opacity-[0.01]">
+      <body className="m-0 bg-background font-sans text-[14px] text-foreground antialiased selection:bg-accent selection:text-accent-foreground before:pointer-events-none before:fixed before:inset-0 before:z-40 before:bg-(image:--noise) before:opacity-[0.08] before:content-[''] dark:before:opacity-[0.01]">
         <TooltipProvider>
           <SoundEffects />
           {children}

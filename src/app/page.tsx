@@ -203,7 +203,7 @@ export default function Home() {
                 >
                   <Favicon icon={project.icon} />
                   <div className="project-copy min-w-0 flex-1">
-                    <h3 className="text-[13px] leading-[22px] font-medium tracking-[-0.3px]">
+                    <h3 className="text-[14px] leading-[22px] font-medium tracking-[-0.3px]">
                       {project.name}
                       <span className="project-category ml-3 inline-block -translate-x-1 text-[11px] font-normal text-muted-foreground opacity-0 transition-[translate,opacity] duration-180 ease-[ease] group-focus-visible:translate-x-0 group-focus-visible:opacity-100 pointer-fine:group-hover:translate-x-0 pointer-fine:group-hover:opacity-100 max-[600px]:hidden">
                         {project.category}
