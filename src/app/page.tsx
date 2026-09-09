@@ -222,6 +222,10 @@ export default function Home() {
                 </a>
               ))}
             </div>
+            <p className="mt-4 ml-[18px] flex gap-3 text-[11px] leading-[1.8] text-muted-foreground max-[600px]:ml-[13px]">
+              <span aria-hidden="true">↳</span> There are more. Most are unfinished, outdated, or
+              best left unshared.
+            </p>
           </section>
 
           <section
