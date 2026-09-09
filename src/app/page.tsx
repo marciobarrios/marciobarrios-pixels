@@ -25,7 +25,7 @@ export default function Home() {
         <header className="topbar flex items-center justify-between pt-[30px] max-[600px]:pt-[15px]">
           <a
             href="#top"
-            className="wordmark inline-flex min-h-11 items-center text-[21px] font-semibold tracking-[-2px] [&>span]:text-primary"
+            className="wordmark inline-flex min-h-11 items-center text-[19px] font-semibold tracking-[-2px] [&>span]:text-primary"
             aria-label="Marcio Barrios, back to top"
             data-cuelume-hover="tick"
           >
@@ -203,7 +203,7 @@ export default function Home() {
                 >
                   <Favicon icon={project.icon} />
                   <div className="project-copy min-w-0 flex-1">
-                    <h3 className="text-[14px] leading-[22px] font-medium tracking-[-0.3px]">
+                    <h3 className="text-[13px] leading-[22px] font-medium tracking-[-0.3px]">
                       {project.name}
                       <span className="project-category ml-3 inline-block -translate-x-1 text-[11px] font-normal text-muted-foreground opacity-0 transition-[translate,opacity] duration-180 ease-[ease] group-focus-visible:translate-x-0 group-focus-visible:opacity-100 pointer-fine:group-hover:translate-x-0 pointer-fine:group-hover:opacity-100 max-[600px]:hidden">
                         {project.category}
