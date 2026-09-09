@@ -32,7 +32,7 @@ export default function Home() {
             mb<span aria-hidden="true">.</span>
           </a>
           <div className="topbar-right flex items-center gap-[17px] max-[600px]:gap-2">
-            <span className="location flex items-center gap-1.5 text-[10px] text-muted-foreground">
+            <span className="location flex items-center gap-1.5 text-[11px] text-muted-foreground">
               <MapPin size={12} aria-hidden="true" />
               Barcelona, ES
             </span>
@@ -98,18 +98,18 @@ export default function Home() {
               <h2 id="work-title" className="text-[12px] font-[550] tracking-[-0.25px]">
                 Work
               </h2>
-              <span className="text-[10px] text-muted-foreground">A few chapters</span>
+              <span className="text-[11px] text-muted-foreground">A few chapters</span>
             </div>
             <SoundDetails className="current-work group/current rounded-[10px] border border-border bg-[color-mix(in_srgb,var(--muted)_48%,transparent)] px-4 max-[600px]:px-3">
               <summary className="work-row flex min-h-[58px] list-none items-center gap-3.5 text-[12px] max-[600px]:gap-2.5 [&::-webkit-details-marker]:hidden">
                 <Favicon icon="mito.svg" />
                 <div className="work-name flex-1 font-medium tracking-[-0.2px]">
                   <span className="flex items-center gap-2">MITO AI</span>
-                  <span className="work-role mt-[3px] block text-[10px] font-normal text-(--secondary)">
+                  <span className="work-role mt-[3px] block text-[11px] font-normal text-(--secondary)">
                     Product Engineer
                   </span>
                 </div>
-                <span className="work-years whitespace-nowrap text-[10px] font-normal text-muted-foreground">
+                <span className="work-years whitespace-nowrap text-[11px] font-normal text-muted-foreground">
                   2026 — now
                 </span>
                 <ChevronDown
@@ -125,7 +125,7 @@ export default function Home() {
                     realized features for an infinite canvas tool used in the filmmaking workflow.
                   </p>
                   <ExternalLink
-                    className="mt-2.5 min-h-8 items-center text-[10px]"
+                    className="mt-2.5 min-h-8 items-center text-[11px]"
                     href="https://mito.ai/"
                   >
                     Explore MITO
@@ -143,7 +143,7 @@ export default function Home() {
               >
                 <Favicon icon="sketch.ico" />
                 <span className="work-name flex-1 font-medium tracking-[-0.2px]">Sketch</span>
-                <span className="work-years whitespace-nowrap text-[10px] font-normal text-muted-foreground">
+                <span className="work-years whitespace-nowrap text-[11px] font-normal text-muted-foreground">
                   2020 — 2025
                 </span>
                 <ArrowUpRight size={13} aria-hidden="true" />
@@ -158,7 +158,7 @@ export default function Home() {
               >
                 <Favicon icon="xing.svg" />
                 <span className="work-name flex-1 font-medium tracking-[-0.2px]">Xing</span>
-                <span className="work-years whitespace-nowrap text-[10px] font-normal text-muted-foreground">
+                <span className="work-years whitespace-nowrap text-[11px] font-normal text-muted-foreground">
                   2013 — 2019
                 </span>
                 <ArrowUpRight size={13} aria-hidden="true" />
@@ -167,13 +167,13 @@ export default function Home() {
               <div className="work-row flex min-h-[49px] items-center gap-3.5 text-[12px] max-[600px]:gap-2.5 max-[360px]:gap-2">
                 <Favicon icon="tuenti.svg" />
                 <span className="work-name flex-1 font-medium tracking-[-0.2px]">Tuenti</span>
-                <span className="work-years whitespace-nowrap text-[10px] font-normal text-muted-foreground">
+                <span className="work-years whitespace-nowrap text-[11px] font-normal text-muted-foreground">
                   2011 — 2013
                 </span>
                 <span className="row-spacer w-[13px]" />
               </div>
             </div>
-            <p className="old-days mt-4 ml-[18px] flex gap-3 text-[10px] leading-[1.8] text-muted-foreground max-[600px]:ml-[13px]">
+            <p className="old-days mt-4 ml-[18px] flex gap-3 text-[11px] leading-[1.8] text-muted-foreground max-[600px]:ml-[13px]">
               <span aria-hidden="true">↳</span> 20+ years in. The earlier chapters require a Flash
               plugin.
             </p>
@@ -189,7 +189,7 @@ export default function Home() {
               <h2 id="projects-title" className="text-[12px] font-[550] tracking-[-0.25px]">
                 Side projects
               </h2>
-              <span className="text-[10px] text-muted-foreground">Curiosity, shipped</span>
+              <span className="text-[11px] text-muted-foreground">Curiosity, shipped</span>
             </div>
             <div className="project-list flex flex-col gap-0">
               {projects.map((project) => (
@@ -205,7 +205,7 @@ export default function Home() {
                   <div className="project-copy min-w-0 flex-1">
                     <h3 className="text-[13px] leading-[22px] font-medium tracking-[-0.3px]">
                       {project.name}
-                      <span className="project-category ml-3 inline-block -translate-x-1 text-[10px] font-normal text-muted-foreground opacity-0 transition-[translate,opacity] duration-180 ease-[ease] group-focus-visible:translate-x-0 group-focus-visible:opacity-100 pointer-fine:group-hover:translate-x-0 pointer-fine:group-hover:opacity-100 max-[600px]:hidden">
+                      <span className="project-category ml-3 inline-block -translate-x-1 text-[11px] font-normal text-muted-foreground opacity-0 transition-[translate,opacity] duration-180 ease-[ease] group-focus-visible:translate-x-0 group-focus-visible:opacity-100 pointer-fine:group-hover:translate-x-0 pointer-fine:group-hover:opacity-100 max-[600px]:hidden">
                         {project.category}
                       </span>
                     </h3>
@@ -235,7 +235,7 @@ export default function Home() {
             <PixelPlayground />
           </section>
         </main>
-        <footer className="footer flex items-center justify-between border-t border-border py-4 pb-6 text-[10px] text-muted-foreground [&>a]:inline-flex [&>a]:min-h-11 [&>a]:items-center [&>a]:gap-[7px]">
+        <footer className="footer flex items-center justify-between border-t border-border py-4 pb-6 text-[11px] text-muted-foreground [&>a]:inline-flex [&>a]:min-h-11 [&>a]:items-center [&>a]:gap-[7px]">
           <span>© 2026 Marcio Barrios</span>
           <a className="pointer-fine:hover:text-primary" href="#top" data-cuelume-toggle="pulse">
             Back to top

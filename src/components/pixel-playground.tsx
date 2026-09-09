@@ -65,7 +65,7 @@ export function PixelPlayground() {
           <span className="mt-px">Move pixels</span>
         </label>
         <p
-          className="min-h-[31px] text-[10px] leading-[1.7] text-muted-foreground"
+          className="min-h-[31px] text-[11px] leading-[1.7] text-muted-foreground"
           aria-live="polite"
         >
           {moved ? "You’re a natural. Uncheck to tidy up." : "Go on. It’s basically my job."}
