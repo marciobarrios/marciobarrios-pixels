@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { GeistMono } from "geist/font/mono";
+import { Analytics } from "@vercel/analytics/next";
 import { SoundEffects } from "@/components/sound-effects";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import "./globals.css";
@@ -41,6 +42,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           <SoundEffects />
           {children}
         </TooltipProvider>
+        <Analytics />
       </body>
     </html>
   );
