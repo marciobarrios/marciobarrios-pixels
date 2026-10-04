@@ -44,7 +44,7 @@ export const projects = [
   {
     name: "Retro tool",
     href: "https://www.retrotool.app/",
-    icon: "retrotool.ico",
+    icon: "retrotool.webp",
     description: "A simple, free space for teams to reflect and get better together.",
     category: "Collaborate",
   },
