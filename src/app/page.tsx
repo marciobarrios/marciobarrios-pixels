@@ -61,11 +61,11 @@ export default function Home() {
                 code is my happy place.
               </p>
               <p>
-                Currently a Product Engineer at{" "}
+                Most recently a Product Engineer at{" "}
                 <ExternalLink href="https://mito.ai/" icon="mito.svg">
                   MITO AI
                 </ExternalLink>
-                , building tools for filmmakers. Previously, I helped shape the web at{" "}
+                , building tools for filmmakers. Before that, I helped shape the web at{" "}
                 <ExternalLink href="https://www.sketch.com/" icon="sketch.ico">
                   Sketch
                 </ExternalLink>
@@ -110,7 +110,7 @@ export default function Home() {
                   </span>
                 </div>
                 <span className="work-years whitespace-nowrap text-[11px] font-normal text-muted-foreground">
-                  2026 — now
+                  2026
                 </span>
                 <ChevronDown
                   className="work-chevron -rotate-90 text-muted-foreground transition-transform duration-200 ease-[ease] group-open/current:rotate-0"
