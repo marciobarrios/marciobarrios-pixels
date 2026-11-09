@@ -48,6 +48,27 @@ export const projects = [
     description: "A simple, free space for teams to reflect and get better together.",
     category: "Collaborate",
   },
+  {
+    name: "Can Peguera",
+    href: "https://can-peguera.vercel.app/",
+    icon: "can-peguera.svg",
+    description: "A documentary archive of a Barcelona neighbourhood and its living memory.",
+    category: "History",
+  },
+  {
+    name: "Can Solei",
+    href: "https://can-solei.vercel.app/",
+    icon: "can-solei.svg",
+    description: "A bilingual cultural guide to a Badalona park and its many stories.",
+    category: "Explore",
+  },
+  {
+    name: "Made in Honduras",
+    href: "https://madeinhonduras.net/",
+    icon: "madeinhonduras.svg",
+    description: "Photographs of Honduras: its people, islands, and wild places.",
+    category: "Photography",
+  },
 ] as const;
 
 export const clips = [
