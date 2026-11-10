@@ -121,7 +121,7 @@ export default function Home() {
               <div className="work-detail invisible grid grid-rows-[0fr] overflow-hidden opacity-0 pointer-events-none transition-[grid-template-rows,opacity,visibility] duration-[220ms] ease-[cubic-bezier(0.19,1,0.22,1)] motion-reduce:transition-none group-open/current:pointer-events-auto group-open/current:visible group-open/current:grid-rows-[1fr] group-open/current:opacity-100">
                 <div className="min-h-0 overflow-hidden px-[15px] pt-0.5 pb-[18px] pl-9 text-[12px] leading-[1.9] text-(--secondary) max-[600px]:pr-1 max-[600px]:pl-8">
                   <p>
-                    As a product engineer at MITO, I turn product ideas and wireframes into fully
+                    As a product engineer at MITO, I turned product ideas and wireframes into fully
                     realized features for an infinite canvas tool used in the filmmaking workflow.
                   </p>
                   <ExternalLink
