@@ -6,8 +6,12 @@ test("content, media, and metadata load without runtime errors", async ({ page, 
   page.on("pageerror", (error) => errors.push(error.message));
   await page.goto("/");
   await expect(page).toHaveTitle("Marcio Barrios ⋅ Design Engineer");
-  await expect(page.locator(".project-row")).toHaveCount(7);
+  await expect(page.locator(".project-row")).toHaveCount(10);
   await expect(page.locator(".current-work")).not.toHaveAttribute("open");
+  // Scroll through every image so lazy-loaded ones below the fold start loading.
+  for (const img of await page.locator("img").all()) {
+    await img.evaluate((el) => el.scrollIntoView({ block: "center", behavior: "instant" }));
+  }
   await page.locator("footer").scrollIntoViewIfNeeded();
   await expect
     .poll(() =>

@@ -52,7 +52,7 @@ export default async function OpenGraphImage() {
         }}
       >
         <span>Design, code & the details in between.</span>
-        <span>Currently at MITO AI</span>
+        <span>Previously at MITO AI & Sketch</span>
       </div>
     </div>,
     { ...size, fonts: [{ name: "Geist Mono", data: font, weight: 400, style: "normal" }] },
